@@ -8,12 +8,12 @@ export default {
   ],
   theme: {
     screens: {
-      'phone': '340px', // 2sm
-      'phoneTablet': '640px', // sm
-      'tablet': '768px', // md
-      'laptop': '1024px', // lg
-      'desktopLaptop': '1280px', // xl
-      'desktopWide': '1536px', // 2xl
+      'smPhone': '320px',
+      'mdPhone': '640px',
+      'lgPhone': '768px',
+      'smLaptop': '1024px',
+      'mdLaptop': '1280px',
+      'lgLaptop': '1536px',
     },
     extend: {
       colors: {

@@ -12,12 +12,43 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Quicksand", sans-serif;
-    background: #1A1924;
-    color: #F1F7F8;
+    background: #1a1924;
+    color: #f1f7f8;
   }
 
-  .container {
-    margin-left: 10rem;
-    margin-right: 10rem;
+  .containerMyspace {
+    padding-left: 10rem;
+    padding-right: 10rem;
+    width: auto !important;
   }
+
+  .containerMySpaceDeviceHand {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    width: auto !important;
+  }
+}
+
+@media (min-width: 320px) {
+  max-width: 100% !important;
+}
+
+@media (min-width: 640px) {
+  max-width: 100% !important;
+}
+
+@media (min-width: 768px) {
+  max-width: 100% !important;
+}
+
+@media (min-width: 1024px) {
+  max-width: 100% !important;
+}
+
+@media (min-width: 1280px) {
+  max-width: 100% !important;
+}
+
+@media (min-width: 1536px) {
+  max-width: 100% !important;
 }
