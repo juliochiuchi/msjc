@@ -7,7 +7,7 @@ import {
 } from 'react-icons/bi'
 import { SiNextdotjs } from 'react-icons/si'
 import { IoLogoHtml5 } from 'react-icons/io'
-import { RiJavascriptFill } from 'react-icons/ri'
+import { RiJavascriptFill } from 'react-icons/ri';
 import { BsGithub, BsLinkedin } from 'react-icons/bs'
 
 const Home = () => {
