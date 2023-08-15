@@ -53,7 +53,7 @@ module.exports = {
       version: 'detect',
     },
     'import/parsers': {
-      [require.resolve('@typescript-eslint/parser')]: ['.ts', '.tsx', '.d.ts'],
+      [require('@typescript-eslint/parser')]: ['.ts', '.tsx', '.d.ts'],
     },
   },
 }
