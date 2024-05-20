@@ -82,7 +82,7 @@ const Home = () => {
                     "
           >
             Meu nome é Julio. Trabalho como desenvolvedor web desde 2015, tenho
-            ampla experiência em front-end e meu rabalho principal é criar
+            ampla experiência em front-end e meu trabalho principal é criar
             layouts incríveis de fácil acesso e intuitivos.
           </p>
         </div>
