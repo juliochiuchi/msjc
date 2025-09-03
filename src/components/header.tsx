@@ -11,7 +11,7 @@ export function Header() {
             smLaptop:justify-between
             "
       >
-        <div>
+        {/* <div>
           <h3 className="font-bold tracking-widest smPhone:text-xl mdPhone:text-2xl">
             Julio
             <span className="text-blue-violet-default mdPhone:text-[2rem]">
@@ -22,7 +22,8 @@ export function Header() {
               {' } '}
             </span>
           </h3>
-        </div>
+        </div> */}
+        <div />
 
         <div
           className="flex items-center gap-3 text-2xl tracking-wider 
