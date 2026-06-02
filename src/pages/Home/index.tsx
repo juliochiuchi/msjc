@@ -6,7 +6,7 @@ import {
   BiLogoNodejs,
   BiLogoGit,
 } from 'react-icons/bi'
-import { 
+import {
   SiNextdotjs,
   SiStyledcomponents,
   SiReactquery,
@@ -43,32 +43,32 @@ const Home = () => {
           <div className="flex flex-col smLaptop:flex-row items-center smLaptop:items-start gap-8 smLaptop:gap-12">
             {/* Profile Image */}
             <div className="flex-shrink-0">
-              <img 
-                src="https://github.com/juliochiuchi.png" 
+              <img
+                src="https://github.com/juliochiuchi.png"
                 alt="Frontend Software Engineer @MarlabsBrazil | Desenvolvedor | React JS | React Native | Javascript | Typescript | Tailwind CSS | Node JS"
                 className="w-32 h-32 smPhone:w-28 smPhone:h-28 smLaptop:w-40 smLaptop:h-40 rounded-full border-4 border-blue-400 shadow-lg shadow-blue-400/30 hover:shadow-blue-400/50 transition-all duration-300"
               />
             </div>
-            
+
             {/* Profile Info */}
             <div className="flex-1 smPhone:text-center smLaptop:text-left">
               {/* <h2 className="text-3xl smPhone:text-2xl font-bold mb-4 text-blue-400">Julio Chiuchi</h2> */}
-              
+
               <div>
-          <h3 className="text-3xl smPhone:text-2xl font-bold mb-4 tracking-widest mdPhone:text-2xl">
-            Julio
-            <span className="text-blue-violet-default mdPhone:text-[2rem]">
-              {' { '}
-            </span>
-            Chiuchi
-            <span className="text-blue-violet-default mdPhone:text-[2rem]">
-              {' } '}
-            </span>
-          </h3>
-        </div>
+                <h3 className="text-3xl smPhone:text-2xl font-bold mb-4 tracking-widest mdPhone:text-2xl">
+                  Julio
+                  <span className="text-blue-violet-default mdPhone:text-[2rem]">
+                    {' { '}
+                  </span>
+                  Chiuchi
+                  <span className="text-blue-violet-default mdPhone:text-[2rem]">
+                    {' } '}
+                  </span>
+                </h3>
+              </div>
 
               <p className="text-lg smPhone:text-base text-gray-300 leading-relaxed mb-4">
-                Frontend Software Engineer @MarlabsBrazil | ReactJS | TailwindCSS | Typescript | ZOD | TanStack Router | TanStack Query | Vite | NextJS | React Native | Javascript | NodeJS | GIT
+                Senior Front-end Engineer (React) | ReactJS | TailwindCSS | Typescript | ZOD | TanStack Router | TanStack Query | Vite | NextJS | React Native | Javascript | NodeJS | GIT
               </p>
               <div className="flex flex-wrap gap-2 smPhone:justify-center smLaptop:justify-start">
                 <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30">Frontend Engineer</span>
@@ -87,7 +87,7 @@ const Home = () => {
               Front-end Sênior com DNA em React.js, paixão por UX e pegada de quem entrega.
             </p>
             <p className="text-lg smPhone:text-base leading-relaxed text-gray-300">
-              Sou movido por código limpo, boas ideias e aquele clique perfeito entre design e funcionalidade. 
+              Sou movido por código limpo, boas ideias e aquele clique perfeito entre design e funcionalidade.
               Especialista em React.js com TypeScript e Tailwind, respiro componentes reutilizáveis, navegação fluida e experiências intuitivas.
             </p>
           </div>
@@ -98,18 +98,18 @@ const Home = () => {
           <h2 className="text-3xl font-bold mb-6 smPhone:text-2xl text-green-400">💼 Experiência</h2>
           <div className="bg-gray-800/50 rounded-lg p-6 mb-6 border-l-4 border-green-400">
             <p className="text-lg smPhone:text-base leading-relaxed text-gray-200 mb-4">
-              Minha jornada inclui entregas para grandes nomes como <span className="text-blue-300 font-semibold">Bayer, Cargill, Coopercitrus, Argo, XMobots</span>, 
+              Minha jornada inclui entregas para grandes nomes como <span className="text-blue-300 font-semibold">Bayer, Cargill, Coopercitrus, Argo, XMobots</span>,
               além de liderar a transformação digital de sistemas públicos (prefeituras, câmaras e institutos).
             </p>
             <p className="text-base smPhone:text-sm text-gray-300">
               Migrei sistemas legados para soluções web modernas, como portais de transparência, holerites e aplicações na área da saúde.
             </p>
           </div>
-          
+
           <div className="bg-gray-800/50 rounded-lg p-6 border-l-4 border-purple-400">
             <h3 className="text-xl font-semibold mb-3 text-purple-300">🧠 Tech com inteligência</h3>
             <p className="text-base smPhone:text-sm leading-relaxed text-gray-300">
-              Utilizo IA como aliada no desenvolvimento — seja acelerando refatorações, gerando testes, 
+              Utilizo IA como aliada no desenvolvimento — seja acelerando refatorações, gerando testes,
               explorando soluções ou melhorando minha produtividade no dia a dia.
             </p>
           </div>
@@ -118,7 +118,7 @@ const Home = () => {
         {/* Tech Stack Section */}
         <section className="smPhone:pl-8 smPhone:pr-8 mdPhone:pl-0 mdPhone:pr-0 smLaptop:w-4/5 mb-16">
           <h2 className="text-3xl font-bold mb-6 smPhone:text-2xl text-yellow-400">👨‍💻 Tech Stack</h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div className="bg-gray-800/50 rounded-lg p-6">
               <h3 className="text-xl font-semibold mb-4 text-blue-300">Frontend Principal</h3>
@@ -126,7 +126,7 @@ const Home = () => {
                 React + TypeScript + Tailwind + Zod + Vite + Tanstack Router + Tanstack Query + Next
               </p>
             </div>
-            
+
             <div className="bg-gray-800/50 rounded-lg p-6">
               <h3 className="text-xl font-semibold mb-4 text-green-300">Mobile & Backend</h3>
               <p className="text-gray-300 leading-relaxed mb-2">
@@ -136,7 +136,7 @@ const Home = () => {
                 Node.js, JavaScript puro, C#, GitHub
               </p>
             </div>
-            
+
             <div className="bg-gray-800/50 rounded-lg p-6 md:col-span-2">
               <h3 className="text-xl font-semibold mb-4 text-purple-300">Ambiente de Desenvolvimento</h3>
               <p className="text-gray-300 leading-relaxed">
@@ -151,7 +151,7 @@ const Home = () => {
           <h2 className="text-3xl font-bold mb-6 smPhone:text-2xl text-indigo-400">🎓 Formação</h2>
           <div className="bg-gray-800/50 rounded-lg p-6 border-l-4 border-indigo-400">
             <p className="text-lg smPhone:text-base leading-relaxed text-gray-200 mb-4">
-              Formado em <span className="text-indigo-300 font-semibold">Sistemas de Informação pela UNIFEV</span> e 
+              Formado em <span className="text-indigo-300 font-semibold">Sistemas de Informação pela UNIFEV</span> e
               graduado também nas trincheiras da <span className="text-purple-300 font-semibold">Rocketseat</span>.
             </p>
             <p className="text-base smPhone:text-sm text-gray-300">
@@ -168,7 +168,7 @@ const Home = () => {
               Sou colaborativo, determinado e pró-ativo, gosto de trabalhar com times que compartilham visão, propósito e liderança inspiradora.
             </p>
             <p className="text-base smPhone:text-sm leading-relaxed text-gray-300">
-              Se a sua empresa valoriza pessoas que constroem com responsabilidade, ousadia e inteligência, 
+              Se a sua empresa valoriza pessoas que constroem com responsabilidade, ousadia e inteligência,
               estou pronto para fazer parte dessa jornada.
             </p>
           </div>

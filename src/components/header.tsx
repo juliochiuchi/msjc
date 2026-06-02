@@ -1,7 +1,9 @@
+import cvPdf from '../assets/cv/cv-julio-senior-frontend-react.pdf'
+
 export function Header() {
   return (
     <header
-        className="smPhone:containerMySpaceDeviceHand smLaptop:containerMyspace flex flex-wrap  
+      className="smPhone:containerMySpaceDeviceHand smLaptop:containerMyspace flex flex-wrap  
             items-center 
             pt-14 
             smPhone:flex-col 
@@ -10,8 +12,8 @@ export function Header() {
             smLaptop:flex-row 
             smLaptop:justify-between
             "
-      >
-        {/* <div>
+    >
+      {/* <div>
           <h3 className="font-bold tracking-widest smPhone:text-xl mdPhone:text-2xl">
             Julio
             <span className="text-blue-violet-default mdPhone:text-[2rem]">
@@ -23,25 +25,25 @@ export function Header() {
             </span>
           </h3>
         </div> */}
-        <div />
+      <div />
 
-        <div
-          className="flex items-center gap-3 text-2xl tracking-wider 
+      <div
+        className="flex items-center gap-3 text-2xl tracking-wider 
                 smPhone:flex-col smPhone:justify-center
                 smLaptop:flex-row
                 "
+      >
+        <a href="#" className="text-blue-violet-default">
+          about me
+        </a>
+        <a
+          download="cv-julio-senior-frontend-react.pdf"
+          href={cvPdf}
+          className="animate-pulse rounded-md border border-blue-violet-default p-3 text-lg transition-colors duration-700 ease-in-out hover:bg-blue-violet-default hover:text-white-ice smLaptop:ml-8"
         >
-          <a href="#" className="text-blue-violet-default">
-            about me
-          </a>
-          <a
-            download
-            href="/src/assets/juliochiuchi-cv.pdf"
-            className="animate-pulse rounded-md border border-blue-violet-default p-3 text-lg transition-colors duration-700 ease-in-out hover:bg-blue-violet-default hover:text-white-ice smLaptop:ml-8"
-          >
-            download cv
-          </a>
-        </div>
-      </header>
+          download cv
+        </a>
+      </div>
+    </header>
   )
 }

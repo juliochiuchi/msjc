@@ -26,7 +26,7 @@ Aplicação de portfólio pessoal focada em apresentar perfil profissional, expe
 
 Requisitos:
 
-- Node.js 22+
+- Node.js 24.14.1+
 
 Instalação e execução:
 
