@@ -1,215 +1,498 @@
-import { FaReact, FaCss3Alt } from 'react-icons/fa'
-import { FaCode } from "react-icons/fa6";
+import { useState } from 'react'
+import { FaCss3Alt, FaReact } from 'react-icons/fa'
+import { FaCode } from 'react-icons/fa6'
 import {
   BiLogoTypescript,
   BiLogoTailwindCss,
-  BiLogoNodejs,
   BiLogoGit,
+  BiLogoNodejs,
 } from 'react-icons/bi'
 import {
-  SiNextdotjs,
-  SiStyledcomponents,
-  SiReactquery,
   SiExpo,
+  SiNextdotjs,
+  SiReactquery,
+  SiStyledcomponents,
 } from 'react-icons/si'
 import { IoLogoHtml5 } from 'react-icons/io'
 import { RiJavascriptFill } from 'react-icons/ri'
-import { SiVite } from "react-icons/si";
+import { SiVite } from 'react-icons/si'
 
+import portfolioPreview from '../../assets/psmsjc-home.png'
+import ipimPreview from '../../assets/ipim-home.png'
+import luminaPreview from '../../assets/lumina.png'
+import tiktakPreview from '../../assets/tiktak.png'
+import trackerPreview from '../../assets/tracker.png'
+import { CardStack } from '../../components/card-stack'
 import { Footer } from '../../components/footer'
 import { Header } from '../../components/header'
-import { CardStack } from '../../components/card-stack'
+
+const quickProjects = [
+  {
+    id: 'enterprise',
+    category: 'Enterprise Frontend',
+    title: 'Plataformas para operações críticas',
+    summary:
+      'Entregas para Bayer, Cargill, Coopercitrus, Argo e XMobots com foco em clareza, performance e confiança visual.',
+    detail:
+      'Interfaces preparadas para uso recorrente, estados bem tratados e experiências que ajudam o usuário a tomar decisões com menos fricção.',
+    impact: 'UX clara para produtos com alta exigência operacional.',
+    stack: ['React', 'TypeScript', 'Tailwind', 'TanStack Query'],
+    bullets: [
+      'Arquitetura de componentes reutilizáveis',
+      'Fluxos com prioridade para performance percebida',
+      'Consistência visual em cenários complexos',
+    ],
+    image: luminaPreview,
+    badgeClass: 'from-sky-400/20 via-cyan-400/10 to-transparent',
+    ringClass: 'border-sky-300/30',
+  },
+  {
+    id: 'tiktak',
+    category: 'Produtividade pessoal',
+    title: 'TikTak: controle de batida e tasks do dia',
+    summary:
+      'Sistema de controle de batida de ponto com integração de tasks/Jira para registrar o que foi realizado no dia e facilitar o acompanhamento individual.',
+    detail:
+      'A proposta centraliza o histórico pessoal: permite consultar apenas um dia específico ou analisar a evolução em um range de datas, relembrando com clareza o que foi feito.',
+    impact: 'Histórico diário simples para lembrar e comprovar entregas.',
+    stack: ['React', 'TypeScript', 'Vite', 'Jira'],
+    bullets: [
+      'Registro de tasks do dia com referência do Jira',
+      'Filtro por data única ou por período',
+      'Controle individual e pessoal com leitura rápida',
+    ],
+    image: tiktakPreview,
+    badgeClass: 'from-emerald-400/20 via-lime-300/10 to-transparent',
+    ringClass: 'border-emerald-300/30',
+  },
+  {
+    id: 'tracker',
+    category: 'Finanças pessoais',
+    title: 'Tracker: compras, entregas e gasto total',
+    summary:
+      'Plataforma para acompanhar compras realizadas pela pessoa, integrada a uma API, consultando status de entrega de cada item e quanto já foi gasto no total.',
+    detail:
+      'Organiza pedidos em uma visão única, com consulta por status e leitura clara do acumulado gasto, ajudando a manter previsibilidade de entregas e do orçamento.',
+    impact: 'Mais controle sobre entregas e sobre o dinheiro investido em compras.',
+    stack: ['React', 'TypeScript', 'API', 'TanStack Query'],
+    bullets: [
+      'Consulta de status de entrega por item',
+      'Cálculo e exibição do valor total gasto',
+      'Integração com API com dados atualizados',
+    ],
+    image: trackerPreview,
+    badgeClass: 'from-violet-400/20 via-fuchsia-400/10 to-transparent',
+    ringClass: 'border-violet-300/30',
+  },
+  {
+    id: 'ipim',
+    category: 'Institucional + Admin',
+    title: 'IPIM: portal com gestão de programações',
+    summary:
+      'Site para uma instituição religiosa com área administrativa, cadastro de programações e organização de agenda da comunidade.',
+    detail:
+      'Uma experiência institucional com navegação leve para o público e um painel admin para manter a agenda atualizada, garantindo que as informações da comunidade fiquem sempre consistentes.',
+    impact: 'Comunicação mais organizada e gestão mais simples para a equipe.',
+    stack: ['React', 'TypeScript', 'Tailwind', 'Admin UI'],
+    bullets: [
+      'Cadastro e manutenção de programações da comunidade',
+      'Rotina administrativa centralizada e simples',
+      'Estrutura pronta para evoluir com novos módulos',
+    ],
+    image: ipimPreview,
+    badgeClass: 'from-rose-400/20 via-pink-400/10 to-transparent',
+    ringClass: 'border-rose-300/30',
+  },
+  {
+    id: 'portfolio',
+    category: 'Portfolio',
+    title: 'Presença digital com narrativa mais forte',
+    summary:
+      'Este portfólio foi repensado para apresentar credenciais, stack e projetos de forma mais atraente e fácil de explorar.',
+    detail:
+      'A proposta traz hierarquia mais elegante, superfícies translúcidas e uma vitrine com preview rápido para ajudar quem visita a entender valor em poucos segundos.',
+    impact: 'Mais interesse visual sem perder sobriedade profissional.',
+    stack: ['React', 'Tailwind', 'Vite', 'UI Motion'],
+    bullets: [
+      'Hero com CTA e prova de valor',
+      'Showcase interativo com visualização rápida',
+      'Linguagem visual moderna inspirada em produtos premium',
+    ],
+    image: portfolioPreview,
+    badgeClass: 'from-amber-300/20 via-orange-300/10 to-transparent',
+    ringClass: 'border-amber-200/30',
+  },
+]
+
+const highlights = [
+  {
+    title: 'React com maturidade de produto',
+    description:
+      'Componentes reutilizáveis, navegação fluida e foco em uma experiência consistente.',
+  },
+  {
+    title: 'UX que simplifica complexidade',
+    description:
+      'Decisões de interface pensadas para reduzir fricção e aumentar entendimento.',
+  },
+  {
+    title: 'Entrega em web e mobile',
+    description:
+      'Do browser ao React Native, com repertório para produtos em múltiplas frentes.',
+  },
+]
+
+const capabilities = [
+  'ReactJS',
+  'Typescript',
+  'TailwindCSS',
+  'NodeJS',
+  'Vite',
+  'NextJS',
+  'React Native',
+  'Git',
+  'Zod',
+  'TanStack Router',
+  'TanStack Query',
+  'Shadcn/UI',
+  'Styled Components',
+  'Expo',
+  'HTML',
+  'CSS',
+  'JavaScript',
+]
 
 const Home = () => {
+  const [selectedProjectId, setSelectedProjectId] = useState(quickProjects[0].id)
+
+  const selectedProject =
+    quickProjects.find((project) => project.id === selectedProjectId) ??
+    quickProjects[0]
+
   return (
-    <div className="relative min-h-[100vh]">
+    <div id="topo" className="relative min-h-screen">
       <Header />
 
-      <div
-        className="smPhone:containerMyspaceDeviceHand smLaptop:containerMyspace 
-            mt-16 
-            pb-[4rem]
-            smPhone:text-center 
-            smLaptop:text-left
-            "
-      >
-        {/* Hero Section */}
-        {/* <div className="mt-16">
-          <h1 className="text-[7rem] smPhone:text-[5rem]">Hey!</h1>
-        </div> */}
+      <main className="container-shell pb-16 pt-10 smLaptop:pb-24">
+        <section className="grid gap-8 pb-10 pt-6 smLaptop:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.75fr)] smLaptop:items-center smLaptop:pb-16">
+          <div>
+            <span className="eyebrow mb-6">
+              Senior Front-end Engineer
+            </span>
+            <h1 className="section-heading max-w-4xl text-5xl font-semibold leading-[0.95] text-slate-50 smPhone:text-[3.25rem] mdPhone:text-6xl smLaptop:text-[5.2rem]">
+              Interfaces modernas que deixam produtos mais claros, desejáveis e fáceis de usar.
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 smPhone:text-base smPhone:leading-7">
+              Sou Julio Chiuchi, front-end sênior com DNA em React.js, paixão por
+              UX e foco em entregar experiências que unem percepção premium,
+              performance e funcionalidade real.
+            </p>
 
-        {/* Profile Section */}
-        <section className="smPhone:pl-8 smPhone:pr-8 mdPhone:pl-0 mdPhone:pr-0 mb-16">
-          <div className="flex flex-col smLaptop:flex-row items-center smLaptop:items-start gap-8 smLaptop:gap-12">
-            {/* Profile Image */}
-            <div className="flex-shrink-0">
+            <div className="mt-8 flex flex-col gap-3 smPhone:items-stretch mdPhone:flex-row mdPhone:items-center">
+              <a
+                href="#projetos"
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-sky-400 via-blue-500 to-violet-500 px-6 py-3 text-sm font-bold text-slate-950 shadow-lg shadow-sky-950/30 transition hover:-translate-y-0.5 hover:shadow-xl"
+              >
+                Ver projetos
+              </a>
+              <a
+                href="#sobre"
+                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/20 hover:bg-white/10"
+              >
+                Conhecer meu perfil
+              </a>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3 text-sm text-slate-300">
+              <span className="rounded-full border border-sky-300/20 bg-sky-400/10 px-4 py-2">
+                React Specialist
+              </span>
+              <span className="rounded-full border border-emerald-300/20 bg-emerald-400/10 px-4 py-2">
+                UX com foco em clareza
+              </span>
+              <span className="rounded-full border border-violet-300/20 bg-violet-400/10 px-4 py-2">
+                Web e Mobile
+              </span>
+            </div>
+          </div>
+
+          <div className="glass-panel-strong relative overflow-hidden rounded-[32px] p-6 smPhone:p-5 smLaptop:p-7">
+            <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-sky-300/14 to-transparent" />
+            <div className="relative flex items-start gap-4">
               <img
                 src="https://github.com/juliochiuchi.png"
-                alt="Frontend Software Engineer @MarlabsBrazil | Desenvolvedor | React JS | React Native | Javascript | Typescript | Tailwind CSS | Node JS"
-                className="w-32 h-32 smPhone:w-28 smPhone:h-28 smLaptop:w-40 smLaptop:h-40 rounded-full border-4 border-blue-400 shadow-lg shadow-blue-400/30 hover:shadow-blue-400/50 transition-all duration-300"
+                alt="Foto de perfil de Julio Chiuchi"
+                className="h-24 w-24 rounded-[28px] border border-white/10 object-cover shadow-2xl shadow-sky-950/30 smPhone:h-20 smPhone:w-20"
               />
-            </div>
-
-            {/* Profile Info */}
-            <div className="flex-1 smPhone:text-center smLaptop:text-left">
-              {/* <h2 className="text-3xl smPhone:text-2xl font-bold mb-4 text-blue-400">Julio Chiuchi</h2> */}
-
               <div>
-                <h3 className="text-3xl smPhone:text-2xl font-bold mb-4 tracking-widest mdPhone:text-2xl">
-                  Julio
-                  <span className="text-blue-violet-default mdPhone:text-[2rem]">
-                    {' { '}
-                  </span>
-                  Chiuchi
-                  <span className="text-blue-violet-default mdPhone:text-[2rem]">
-                    {' } '}
-                  </span>
-                </h3>
-              </div>
-
-              <p className="text-lg smPhone:text-base text-gray-300 leading-relaxed mb-4">
-                Senior Front-end Engineer (React) | ReactJS | TailwindCSS | Typescript | ZOD | TanStack Router | TanStack Query | Vite | NextJS | React Native | Javascript | NodeJS | GIT
-              </p>
-              <div className="flex flex-wrap gap-2 smPhone:justify-center smLaptop:justify-start">
-                <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30">Frontend Engineer</span>
-                <span className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm border border-green-500/30">React Specialist</span>
-                <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm border border-purple-500/30">Mobile Developer</span>
+                <p className="text-sm uppercase tracking-[0.24em] text-slate-400">
+                  Perfil
+                </p>
+                <h2 className="section-heading mt-2 text-3xl font-semibold text-slate-50 smPhone:text-2xl">
+                  Julio <span className="text-gradient">Chiuchi</span>
+                </h2>
+                <p className="mt-2 text-sm leading-6 text-slate-300">
+                  ReactJS, TypeScript, TailwindCSS, Zod, TanStack Router,
+                  TanStack Query, Vite, NextJS, React Native e NodeJS.
+                </p>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* About Section */}
-        <section className="smPhone:pl-8 smPhone:pr-8 mdPhone:pl-0 mdPhone:pr-0 smLaptop:w-4/5 mb-16">
-          <div className="mb-8">
-            <h2 className="text-4xl font-bold mb-6 smPhone:text-3xl text-blue-400">🚀 Sobre mim</h2>
-            <p className="text-xl smPhone:text-lg leading-relaxed mb-6">
-              Front-end Sênior com DNA em React.js, paixão por UX e pegada de quem entrega.
-            </p>
-            <p className="text-lg smPhone:text-base leading-relaxed text-gray-300">
-              Sou movido por código limpo, boas ideias e aquele clique perfeito entre design e funcionalidade.
-              Especialista em React.js com TypeScript e Tailwind, respiro componentes reutilizáveis, navegação fluida e experiências intuitivas.
-            </p>
-          </div>
-        </section>
-
-        {/* Experience Section */}
-        <section className="smPhone:pl-8 smPhone:pr-8 mdPhone:pl-0 mdPhone:pr-0 smLaptop:w-4/5 mb-16">
-          <h2 className="text-3xl font-bold mb-6 smPhone:text-2xl text-green-400">💼 Experiência</h2>
-          <div className="bg-gray-800/50 rounded-lg p-6 mb-6 border-l-4 border-green-400">
-            <p className="text-lg smPhone:text-base leading-relaxed text-gray-200 mb-4">
-              Minha jornada inclui entregas para grandes nomes como <span className="text-blue-300 font-semibold">Bayer, Cargill, Coopercitrus, Argo, XMobots</span>,
-              além de liderar a transformação digital de sistemas públicos (prefeituras, câmaras e institutos).
-            </p>
-            <p className="text-base smPhone:text-sm text-gray-300">
-              Migrei sistemas legados para soluções web modernas, como portais de transparência, holerites e aplicações na área da saúde.
-            </p>
-          </div>
-
-          <div className="bg-gray-800/50 rounded-lg p-6 border-l-4 border-purple-400">
-            <h3 className="text-xl font-semibold mb-3 text-purple-300">🧠 Tech com inteligência</h3>
-            <p className="text-base smPhone:text-sm leading-relaxed text-gray-300">
-              Utilizo IA como aliada no desenvolvimento — seja acelerando refatorações, gerando testes,
-              explorando soluções ou melhorando minha produtividade no dia a dia.
-            </p>
-          </div>
-        </section>
-
-        {/* Tech Stack Section */}
-        <section className="smPhone:pl-8 smPhone:pr-8 mdPhone:pl-0 mdPhone:pr-0 smLaptop:w-4/5 mb-16">
-          <h2 className="text-3xl font-bold mb-6 smPhone:text-2xl text-yellow-400">👨‍💻 Tech Stack</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div className="bg-gray-800/50 rounded-lg p-6">
-              <h3 className="text-xl font-semibold mb-4 text-blue-300">Frontend Principal</h3>
-              <p className="text-gray-300 leading-relaxed">
-                React + TypeScript + Tailwind + Zod + Vite + Tanstack Router + Tanstack Query + Next
-              </p>
-            </div>
-
-            <div className="bg-gray-800/50 rounded-lg p-6">
-              <h3 className="text-xl font-semibold mb-4 text-green-300">Mobile & Backend</h3>
-              <p className="text-gray-300 leading-relaxed mb-2">
-                React Native (sim, também curto criar apps!)
-              </p>
-              <p className="text-gray-300 leading-relaxed">
-                Node.js, JavaScript puro, C#, GitHub
-              </p>
-            </div>
-
-            <div className="bg-gray-800/50 rounded-lg p-6 md:col-span-2">
-              <h3 className="text-xl font-semibold mb-4 text-purple-300">Ambiente de Desenvolvimento</h3>
-              <p className="text-gray-300 leading-relaxed">
-                Linux/macOS (ambiente ideal para minha produtividade)
-              </p>
+            <div className="mt-8 grid gap-3">
+              {highlights.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-[24px] border border-white/10 bg-white/[0.04] p-4"
+                >
+                  <p className="text-sm font-semibold text-slate-100">
+                    {item.title}
+                  </p>
+                  <p className="mt-1 text-sm leading-6 text-slate-400">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Education Section */}
-        <section className="smPhone:pl-8 smPhone:pr-8 mdPhone:pl-0 mdPhone:pr-0 smLaptop:w-4/5 mb-16">
-          <h2 className="text-3xl font-bold mb-6 smPhone:text-2xl text-indigo-400">🎓 Formação</h2>
-          <div className="bg-gray-800/50 rounded-lg p-6 border-l-4 border-indigo-400">
-            <p className="text-lg smPhone:text-base leading-relaxed text-gray-200 mb-4">
-              Formado em <span className="text-indigo-300 font-semibold">Sistemas de Informação pela UNIFEV</span> e
-              graduado também nas trincheiras da <span className="text-purple-300 font-semibold">Rocketseat</span>.
-            </p>
-            <p className="text-base smPhone:text-sm text-gray-300">
-              Mergulhei em tecnologias modernas, performance e experiência do usuário.
-            </p>
-          </div>
-        </section>
-
-        {/* Personal Values Section */}
-        <section className="smPhone:pl-8 smPhone:pr-8 mdPhone:pl-0 mdPhone:pr-0 smLaptop:w-4/5 mb-16">
-          <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-lg p-8 border border-blue-500/30">
-            <h2 className="text-2xl font-bold mb-4 smPhone:text-xl text-cyan-300">✨ Meus Valores</h2>
-            <p className="text-lg smPhone:text-base leading-relaxed text-gray-200 mb-4">
-              Sou colaborativo, determinado e pró-ativo, gosto de trabalhar com times que compartilham visão, propósito e liderança inspiradora.
-            </p>
-            <p className="text-base smPhone:text-sm leading-relaxed text-gray-300">
-              Se a sua empresa valoriza pessoas que constroem com responsabilidade, ousadia e inteligência,
-              estou pronto para fazer parte dessa jornada.
-            </p>
-          </div>
-        </section>
-
-        {/* Technologies Section */}
-        <div className="mt-16 smPhone:pl-4 smPhone:pr-4 mdPhone:pl-0 mdPhone:pr-0">
-          <h2 className="text-3xl font-bold mb-8 smPhone:text-2xl text-orange-400">
-            🛠️ Tecnologias e ferramentas que tenho usado
-          </h2>
-        </div>
-
-        <div
-          className="mt-7 flex flex-wrap items-stretch gap-7
-                smPhone:justify-center
-                smPhone:pl-8
-                smPhone:pr-8
-                mdPhone:pl-0
-                mdPhone:pr-0
-                smLaptop:justify-start
-                "
+        <section
+          id="sobre"
+          className="grid gap-5 py-10 smLaptop:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)]"
         >
-          <CardStack name="REACTJS" icon={FaReact} />
-          <CardStack name="TYPESCRIPT" icon={BiLogoTypescript} />
-          <CardStack name="TAILWINDCSS" icon={BiLogoTailwindCss} />
-          <CardStack name="NODEJS" icon={BiLogoNodejs} />
-          <CardStack name="VITE" icon={SiVite} />
-          <CardStack name="NEXTJS" icon={SiNextdotjs} />
-          <CardStack name="REACT NATIVE" icon={FaReact} />
-          <CardStack name="GIT" icon={BiLogoGit} />
-          <CardStack name="ZOD" icon={FaCode} />
-          <CardStack name="TANSTACK ROUTER" icon={SiReactquery} />
-          <CardStack name="TANSTACK QUERY" icon={SiReactquery} />
-          <CardStack name="SHADCN/UI" icon={FaCode} />
-          <CardStack name="STYLED COMPONENTS" icon={SiStyledcomponents} />
-          <CardStack name="EXPO" icon={SiExpo} />
-          <CardStack name="HTML" icon={IoLogoHtml5} />
-          <CardStack name="CSS" icon={FaCss3Alt} />
-          <CardStack name="JAVASCRIPT" icon={RiJavascriptFill} />
-        </div>
-      </div>
+          <div className="glass-panel rounded-[32px] p-7 smPhone:p-5 smLaptop:p-8">
+            <span className="eyebrow mb-5">Sobre mim</span>
+            <h2 className="section-heading max-w-2xl text-4xl font-semibold text-slate-50 smPhone:text-3xl">
+              Experiência sênior com repertório técnico e sensibilidade de produto.
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-slate-300">
+              Minha jornada combina código limpo, boas decisões de interface e
+              responsabilidade de entrega. Já atuei em produtos para grandes
+              empresas e na modernização de sistemas públicos, sempre com foco em
+              navegação fluida, clareza de uso e confiança visual.
+            </p>
+          </div>
+
+          <div className="grid gap-5">
+            <div className="glass-panel rounded-[28px] p-6">
+              <p className="text-sm uppercase tracking-[0.2em] text-emerald-300">
+                Experiência
+              </p>
+              <p className="mt-3 text-base leading-7 text-slate-300">
+                Entregas para Bayer, Cargill, Coopercitrus, Argo e XMobots, além
+                da transformação digital de sistemas de prefeituras, câmaras e
+                institutos.
+              </p>
+            </div>
+
+            <div className="glass-panel rounded-[28px] p-6">
+              <p className="text-sm uppercase tracking-[0.2em] text-sky-300">
+                Formação
+              </p>
+              <p className="mt-3 text-base leading-7 text-slate-300">
+                Sistemas de Informação pela UNIFEV e formação prática nas
+                trincheiras da Rocketseat, com foco em tecnologias modernas,
+                performance e experiência do usuário.
+              </p>
+            </div>
+
+            <div className="glass-panel rounded-[28px] p-6">
+              <p className="text-sm uppercase tracking-[0.2em] text-violet-300">
+                Modo de trabalho
+              </p>
+              <p className="mt-3 text-base leading-7 text-slate-300">
+                Colaborativo, proativo e orientado a contexto. Uso IA como
+                aliada para acelerar refatorações, explorar soluções e melhorar
+                a qualidade da entrega.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="projetos" className="py-10">
+          <div className="mb-8 max-w-3xl">
+            <span className="eyebrow mb-5">Projetos e cases</span>
+            <h2 className="section-heading text-4xl font-semibold text-slate-50 smPhone:text-3xl">
+              Uma leitura rápida do que eu construo.
+            </h2>
+            <p className="mt-4 text-base leading-8 text-slate-300">
+              Selecione um case para ver contexto, impacto, stack e uma
+              visualização rápida do tipo de experiência que costumo entregar.
+            </p>
+          </div>
+
+          <div className="grid gap-6 smLaptop:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+            <div className="grid gap-4">
+              {quickProjects.map((project) => {
+                const isActive = project.id === selectedProject.id
+
+                return (
+                  <button
+                    key={project.id}
+                    type="button"
+                    onClick={() => setSelectedProjectId(project.id)}
+                    aria-pressed={isActive}
+                    className={`glass-panel rounded-[28px] p-5 text-left transition duration-300 hover:-translate-y-1 ${isActive ? 'border-white/20 bg-white/[0.08]' : ''
+                      }`}
+                  >
+                    <div
+                      className={`mb-4 h-24 rounded-[20px] border ${project.ringClass} bg-gradient-to-br ${project.badgeClass}`}
+                    >
+                      <div className="flex h-full items-end p-4">
+                        <span className="rounded-full border border-white/10 bg-slate-950/30 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-200">
+                          {project.category}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <h3 className="text-xl font-semibold text-slate-100">
+                          {project.title}
+                        </h3>
+                        <p className="mt-2 text-sm leading-6 text-slate-400">
+                          {project.summary}
+                        </p>
+                      </div>
+                      <span className="mt-1 text-xs uppercase tracking-[0.24em] text-slate-500">
+                        Preview
+                      </span>
+                    </div>
+                  </button>
+                )
+              })}
+            </div>
+
+            <div className="glass-panel-strong overflow-hidden rounded-[32px] p-5 smPhone:p-4 smLaptop:sticky smLaptop:top-32 smLaptop:p-7">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <p className="text-sm uppercase tracking-[0.24em] text-slate-400">
+                    Visão rápida
+                  </p>
+                  <h3 className="section-heading mt-2 text-3xl font-semibold text-slate-50 smPhone:text-2xl">
+                    {selectedProject.title}
+                  </h3>
+                </div>
+                <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.18em] text-slate-300">
+                  {selectedProject.category}
+                </span>
+              </div>
+
+              <div className="mt-6 overflow-hidden rounded-[28px] border border-white/10 bg-slate-950/50">
+                {selectedProject.image ? (
+                  <img
+                    src={selectedProject.image}
+                    alt={`Preview do projeto ${selectedProject.title}`}
+                    className="h-[280px] w-full object-cover object-top"
+                  />
+                ) : (
+                  <div className="h-[280px] w-full bg-[radial-gradient(circle_at_top_left,rgba(125,211,252,0.32),transparent_28%),linear-gradient(180deg,rgba(15,23,42,0.96),rgba(2,6,23,0.88))] p-5">
+                    <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
+                      <span className="text-xs uppercase tracking-[0.18em] text-slate-400">
+                        Preview UI
+                      </span>
+                      <span className="rounded-full bg-emerald-400/15 px-3 py-1 text-xs text-emerald-200">
+                        Live context
+                      </span>
+                    </div>
+                    <div className="mt-4 grid h-[200px] grid-cols-[1.1fr_0.9fr] gap-4">
+                      <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-4">
+                        <div className="h-3 w-24 rounded-full bg-slate-600" />
+                        <div className="mt-4 space-y-3">
+                          <div className="h-10 rounded-2xl bg-sky-400/15" />
+                          <div className="h-10 rounded-2xl bg-white/5" />
+                          <div className="h-10 rounded-2xl bg-white/5" />
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex-1 rounded-[24px] border border-white/10 bg-gradient-to-br from-slate-900 to-slate-800 p-4">
+                          <div className="h-3 w-16 rounded-full bg-slate-600" />
+                          <div className="mt-5 h-20 rounded-[20px] bg-gradient-to-r from-sky-400/20 to-violet-400/20" />
+                        </div>
+                        <div className="flex-1 rounded-[24px] border border-white/10 bg-white/[0.04] p-4">
+                          <div className="h-3 w-20 rounded-full bg-slate-600" />
+                          <div className="mt-4 grid grid-cols-2 gap-3">
+                            <div className="h-16 rounded-2xl bg-white/5" />
+                            <div className="h-16 rounded-2xl bg-white/5" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <p className="mt-6 text-base leading-8 text-slate-300">
+                {selectedProject.detail}
+              </p>
+
+              <div className="mt-6 rounded-[24px] border border-white/10 bg-white/[0.04] p-5">
+                <p className="text-sm uppercase tracking-[0.18em] text-slate-400">
+                  Impacto percebido
+                </p>
+                <p className="mt-2 text-base font-medium text-slate-100">
+                  {selectedProject.impact}
+                </p>
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-2">
+                {selectedProject.stack.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-6 grid gap-3">
+                {selectedProject.bullets.map((bullet) => (
+                  <div
+                    key={bullet}
+                    className="rounded-[20px] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-slate-300"
+                  >
+                    {bullet}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="stack" className="py-10">
+          <div className="mb-8 max-w-3xl">
+            <span className="eyebrow mb-5">Stack principal</span>
+            <h2 className="section-heading text-4xl font-semibold text-slate-50 smPhone:text-3xl">
+              Tecnologias e ferramentas que sustentam essa entrega.
+            </h2>
+            <p className="mt-4 text-base leading-8 text-slate-300">
+              Um setup moderno para construir interfaces consistentes, escaláveis
+              e agradáveis de usar.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 mdPhone:grid-cols-3 smLaptop:grid-cols-5">
+            <CardStack name={capabilities[0]} icon={FaReact} />
+            <CardStack name={capabilities[1]} icon={BiLogoTypescript} />
+            <CardStack name={capabilities[2]} icon={BiLogoTailwindCss} />
+            <CardStack name={capabilities[3]} icon={BiLogoNodejs} />
+            <CardStack name={capabilities[4]} icon={SiVite} />
+            <CardStack name={capabilities[5]} icon={SiNextdotjs} />
+            <CardStack name={capabilities[6]} icon={FaReact} />
+            <CardStack name={capabilities[7]} icon={BiLogoGit} />
+            <CardStack name={capabilities[8]} icon={FaCode} />
+            <CardStack name={capabilities[9]} icon={SiReactquery} />
+            <CardStack name={capabilities[10]} icon={SiReactquery} />
+            <CardStack name={capabilities[11]} icon={FaCode} />
+            <CardStack name={capabilities[12]} icon={SiStyledcomponents} />
+            <CardStack name={capabilities[13]} icon={SiExpo} />
+            <CardStack name={capabilities[14]} icon={IoLogoHtml5} />
+            <CardStack name={capabilities[15]} icon={FaCss3Alt} />
+            <CardStack name={capabilities[16]} icon={RiJavascriptFill} />
+          </div>
+        </section>
+      </main>
 
       <Footer />
     </div>

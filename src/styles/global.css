@@ -1,66 +1,131 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap");
 
 @layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   html,
-  body {
+  body,
+  #root {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: "Quicksand", sans-serif;
-    background: #1a1924;
-    color: #f1f7f8;
   }
 
-  .containerMyspace {
-    padding-left: 10rem;
-    padding-right: 10rem;
-    width: auto !important;
+  body {
+    position: relative;
+    overflow-x: hidden;
+    font-family: "Manrope", sans-serif;
+    background:
+      radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), transparent 28%),
+      radial-gradient(circle at top right, rgba(129, 140, 248, 0.16), transparent 24%),
+      radial-gradient(circle at 50% 15%, rgba(14, 165, 233, 0.08), transparent 20%),
+      linear-gradient(180deg, #050816 0%, #090d1d 38%, #060912 100%);
+    color: #f7f9fc;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
-  .containerMySpaceDeviceHand {
-    padding-left: 3rem;
-    padding-right: 3rem;
-    width: auto !important;
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(circle at center, black 48%, transparent 100%);
+    opacity: 0.22;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  ::selection {
+    background: rgba(99, 102, 241, 0.35);
+    color: #ffffff;
   }
 }
 
-@media (min-width: 320px) {
-  .container {
-    max-width: 100% !important;
+@layer components {
+  .containerMyspace,
+  .containerMySpaceDeviceHand,
+  .container-shell {
+    width: min(1180px, calc(100% - 2rem));
+    margin-inline: auto;
   }
-}
 
-@media (min-width: 640px) {
-  .container {
-    max-width: 100% !important;
+  .glass-panel {
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.72), rgba(8, 15, 30, 0.58));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 18px 60px rgba(2, 6, 23, 0.26),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
-}
 
-@media (min-width: 768px) {
-  .container {
-    max-width: 100% !important;
+  .glass-panel-strong {
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.85), rgba(6, 11, 24, 0.78));
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    box-shadow:
+      0 30px 100px rgba(2, 6, 23, 0.34),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  .section-heading {
+    font-family: "Sora", sans-serif;
+    letter-spacing: -0.04em;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    background: rgba(15, 23, 42, 0.52);
+    padding: 0.45rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(226, 232, 240, 0.82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #f8fbff 0%, #98c5ff 42%, #b7a8ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 }
 
 @media (min-width: 1024px) {
-  .container {
-    max-width: 100% !important;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 100% !important;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 100% !important;
+  .containerMyspace,
+  .container-shell {
+    width: min(1180px, calc(100% - 4rem));
   }
 }

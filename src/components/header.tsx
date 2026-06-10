@@ -2,47 +2,54 @@ import cvPdf from '../assets/cv/cv-julio-senior-frontend-react.pdf'
 
 export function Header() {
   return (
-    <header
-      className="smPhone:containerMySpaceDeviceHand smLaptop:containerMyspace flex flex-wrap  
-            items-center 
-            pt-14 
-            smPhone:flex-col 
-            smPhone:justify-center 
-            smPhone:gap-7 
-            smLaptop:flex-row 
-            smLaptop:justify-between
-            "
-    >
-      {/* <div>
-          <h3 className="font-bold tracking-widest smPhone:text-xl mdPhone:text-2xl">
-            Julio
-            <span className="text-blue-violet-default mdPhone:text-[2rem]">
-              {' { '}
+    <header className="sticky top-0 z-50 pt-6">
+      <div className="container-shell">
+        <div className="glass-panel flex flex-col gap-5 rounded-[28px] px-5 py-4 smLaptop:flex-row smLaptop:items-center smLaptop:justify-between smLaptop:px-7">
+          <a href="#topo" className="flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 to-violet-500 text-sm font-extrabold text-slate-950 shadow-lg shadow-sky-900/25">
+              JC
             </span>
-            Chiuchi
-            <span className="text-blue-violet-default mdPhone:text-[2rem]">
-              {' } '}
-            </span>
-          </h3>
-        </div> */}
-      <div />
+            <div>
+              <p className="font-semibold text-slate-100">Julio Chiuchi</p>
+              <p className="text-sm text-slate-400">Senior Front-end Engineer</p>
+            </div>
+          </a>
 
-      <div
-        className="flex items-center gap-3 text-2xl tracking-wider 
-                smPhone:flex-col smPhone:justify-center
-                smLaptop:flex-row
-                "
-      >
-        <a href="#" className="text-blue-violet-default">
-          about me
-        </a>
-        <a
-          download="cv-julio-senior-frontend-react.pdf"
-          href={cvPdf}
-          className="animate-pulse rounded-md border border-blue-violet-default p-3 text-lg transition-colors duration-700 ease-in-out hover:bg-blue-violet-default hover:text-white-ice smLaptop:ml-8"
-        >
-          download cv
-        </a>
+          <nav className="flex flex-wrap items-center gap-3 text-sm font-medium text-slate-300 smLaptop:justify-center">
+            <a
+              href="#sobre"
+              className="rounded-full px-3 py-2 transition hover:bg-white/5 hover:text-white"
+            >
+              Sobre
+            </a>
+            <a
+              href="#projetos"
+              className="rounded-full px-3 py-2 transition hover:bg-white/5 hover:text-white"
+            >
+              Projetos
+            </a>
+            <a
+              href="#stack"
+              className="rounded-full px-3 py-2 transition hover:bg-white/5 hover:text-white"
+            >
+              Stack
+            </a>
+            <a
+              href="#contato"
+              className="rounded-full px-3 py-2 transition hover:bg-white/5 hover:text-white"
+            >
+              Contato
+            </a>
+          </nav>
+
+          <a
+            download="cv-julio-senior-frontend-react.pdf"
+            href={cvPdf}
+            className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:border-sky-300/40 hover:bg-white/10"
+          >
+            Download CV
+          </a>
+        </div>
       </div>
     </header>
   )
