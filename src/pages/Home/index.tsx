@@ -22,6 +22,7 @@ import ipimPreview from '../../assets/ipim-home.png'
 import luminaPreview from '../../assets/lumina.png'
 import tiktakPreview from '../../assets/tiktak.png'
 import trackerPreview from '../../assets/tracker.png'
+import votingPreview from '../../assets/ipim-voting.png'
 import { CardStack } from '../../components/card-stack'
 import { Footer } from '../../components/footer'
 import { Header } from '../../components/header'
@@ -102,6 +103,25 @@ const quickProjects = [
     image: ipimPreview,
     badgeClass: 'from-rose-400/20 via-pink-400/10 to-transparent',
     ringClass: 'border-rose-300/30',
+  },
+  {
+    id: 'voting',
+    category: 'Votação + Governança',
+    title: 'Voting: gestão de votação institucional',
+    summary:
+      'Plataforma desenvolvida para votação de presbíteros e/ou diáconos em uma instituição religiosa, com fluxos específicos para owner, staff e membro.',
+    detail:
+      'O membro é identificado pelo CPF para registrar seus votos, o staff pode lançar votos em papel quando necessário, e o owner configura toda a votação: rodadas, quantidade de votos por rodada, membros ativos e a gestão completa dos votos.',
+    impact: 'Processo de votação mais seguro, organizado e auditável em cada rodada.',
+    stack: ['React', 'TypeScript', 'Node.js', 'Admin UI'],
+    bullets: [
+      'Reconhecimento do membro por CPF para liberação do voto',
+      'Regras por rodada que impedem votos duplicados',
+      'Painel do owner para configurar rodadas, votos e membros ativos',
+    ],
+    image: votingPreview,
+    badgeClass: 'from-indigo-400/20 via-blue-400/10 to-transparent',
+    ringClass: 'border-indigo-300/30',
   },
   {
     id: 'portfolio',
