@@ -3,7 +3,7 @@ import { FaTwitterSquare } from 'react-icons/fa'
 
 export function Footer() {
   return (
-    <footer id="contato" data-ide-section="true" className="pb-12 pt-12">
+    <footer id="contato" data-ide-section="true" className="pb-0 pt-12">
       <div className="glass-panel flex flex-col gap-6 rounded-[28px] px-6 py-6 text-[rgba(222,224,239,0.74)] smLaptop:flex-row smLaptop:items-center smLaptop:justify-between smLaptop:px-8">
         <div>
           <p className="mb-1 text-lg font-semibold text-[rgba(222,224,239,0.96)]">

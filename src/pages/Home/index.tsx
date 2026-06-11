@@ -41,23 +41,27 @@ const quickProjects = [
     category: 'Enterprise Frontend',
     title: 'Plataformas para operações críticas',
     summary:
-      'Entregas para Bayer, Cargill, Coopercitrus, Argo e XMobots com foco em clareza, performance e confiança visual.',
-    detail:
       'Interfaces preparadas para uso recorrente, estados bem tratados e experiências que ajudam o usuário a tomar decisões com menos fricção.',
+    detail:
+      'Entregas para Bayer, Cargill, Coopercitrus, Argo e XMobots com foco em clareza, performance e confiança visual.',
     impact: 'UX clara para produtos com alta exigência operacional.',
     stack: ['React', 'TypeScript', 'Tailwind', 'TanStack Query'],
     bullets: [
       'Arquitetura de componentes reutilizáveis',
       'Fluxos com prioridade para performance percebida',
-      'Consistência visual em cenários complexos',
+      'Consistência visual em cenários complexos.',
     ],
+    problem:
+      'Operações críticas precisam de leitura rápida, estados previsíveis e consistência visual para reduzir fricção em decisões diárias.',
+    solution:
+      'Estruturei uma base de componentes reutilizáveis e fluxos consistentes, com foco em performance percebida e UX clara em cenários complexos.',
     image: luminaPreview,
     badgeClass: 'from-sky-400/20 via-cyan-400/10 to-transparent',
     ringClass: 'border-sky-300/30',
   },
   {
     id: 'tiktak',
-    category: 'Produtividade pessoal',
+    category: 'Produto próprio',
     title: 'TikTak: controle de batida e tasks do dia',
     summary:
       'Sistema de controle de batida de ponto com integração de tasks/Jira para registrar o que foi realizado no dia e facilitar o acompanhamento individual.',
@@ -65,18 +69,18 @@ const quickProjects = [
       'A proposta centraliza o histórico pessoal: permite consultar apenas um dia específico ou analisar a evolução em um range de datas, relembrando com clareza o que foi feito.',
     impact: 'Histórico diário simples para lembrar e comprovar entregas.',
     stack: ['React', 'TypeScript', 'Vite', 'Jira'],
-    bullets: [
-      'Registro de tasks do dia com referência do Jira',
-      'Filtro por data única ou por período',
-      'Controle individual e pessoal com leitura rápida',
-    ],
+    bullets: ['Registro de tasks do dia', 'Filtro por data e período', 'Histórico individual com leitura rápida'],
+    problem:
+      'Acompanhamento diario espalhado em diferentes fontes dificultava lembrar, organizar e comprovar as entregas feitas ao longo da semana.',
+    solution:
+      'Criei um painel unico para registrar horas e tasks com referencia do Jira, incluindo consulta por dia ou por intervalo de datas.',
     image: tiktakPreview,
     badgeClass: 'from-emerald-400/20 via-lime-300/10 to-transparent',
     ringClass: 'border-emerald-300/30',
   },
   {
     id: 'tracker',
-    category: 'Finanças pessoais',
+    category: 'Produto próprio',
     title: 'Tracker: compras, entregas e gasto total',
     summary:
       'Plataforma para acompanhar compras realizadas pela pessoa, integrada a uma API, consultando status de entrega de cada item e quanto já foi gasto no total.',
@@ -84,11 +88,11 @@ const quickProjects = [
       'Organiza pedidos em uma visão única, com consulta por status e leitura clara do acumulado gasto, ajudando a manter previsibilidade de entregas e do orçamento.',
     impact: 'Mais controle sobre entregas e sobre o dinheiro investido em compras.',
     stack: ['React', 'TypeScript', 'API', 'TanStack Query'],
-    bullets: [
-      'Consulta de status de entrega por item',
-      'Cálculo e exibição do valor total gasto',
-      'Integração com API com dados atualizados',
-    ],
+    bullets: ['Consulta por status de entrega', 'Calculo do valor total gasto', 'Dados atualizados via API'],
+    problem:
+      'Compras e entregas ficavam descentralizadas, tornando difícil saber o status de cada item e o total realmente investido.',
+    solution:
+      'Desenvolvi uma plataforma com consulta por status, leitura do acumulado financeiro e integração com API para manter as informações atualizadas.',
     image: trackerPreview,
     badgeClass: 'from-violet-400/20 via-fuchsia-400/10 to-transparent',
     ringClass: 'border-violet-300/30',
@@ -103,11 +107,11 @@ const quickProjects = [
       'Uma experiência institucional com navegação leve para o público e um painel admin para manter a agenda atualizada, garantindo que as informações da comunidade fiquem sempre consistentes.',
     impact: 'Comunicação mais organizada e gestão mais simples para a equipe.',
     stack: ['React', 'TypeScript', 'Tailwind', 'Admin UI'],
-    bullets: [
-      'Cadastro e manutenção de programações da comunidade',
-      'Rotina administrativa centralizada e simples',
-      'Estrutura pronta para evoluir com novos módulos',
-    ],
+    bullets: ['Cadastro de programações', 'Painel administrativo simples', 'Estrutura pronta para evolução'],
+    problem:
+      'A comunicação institucional precisava de um ambiente confiável para exibir agenda e centralizar a manutenção do conteúdo pela equipe.',
+    solution:
+      'Criei um portal com área administrativa para cadastro e organização das programações, mantendo a experiência pública clara e leve.',
     image: ipimPreview,
     badgeClass: 'from-rose-400/20 via-pink-400/10 to-transparent',
     ringClass: 'border-rose-300/30',
@@ -122,11 +126,11 @@ const quickProjects = [
       'O membro é identificado pelo CPF para registrar seus votos, o staff pode lançar votos em papel quando necessário, e o owner configura toda a votação: rodadas, quantidade de votos por rodada, membros ativos e a gestão completa dos votos.',
     impact: 'Processo de votação mais seguro, organizado e auditável em cada rodada.',
     stack: ['React', 'TypeScript', 'Node.js', 'Admin UI'],
-    bullets: [
-      'Reconhecimento do membro por CPF para liberação do voto',
-      'Regras por rodada que impedem votos duplicados',
-      'Painel do owner para configurar rodadas, votos e membros ativos',
-    ],
+    bullets: ['Identificação por CPF', 'Regras por rodada', 'Painel de configuração completa'],
+    problem:
+      'O processo de votação exigia controle mais confiável, regras de rodada e rastreabilidade para diferentes perfis de usuário.',
+    solution:
+      'Implementei fluxos para owner, staff e membro com identificação por CPF, controle de rodadas e gestão centralizada de votos.',
     image: votingPreview,
     badgeClass: 'from-indigo-400/20 via-blue-400/10 to-transparent',
     ringClass: 'border-indigo-300/30',
@@ -141,11 +145,11 @@ const quickProjects = [
       'A proposta traz hierarquia mais elegante, superfícies translúcidas e uma vitrine com preview rápido para ajudar quem visita a entender valor em poucos segundos.',
     impact: 'Mais interesse visual sem perder sobriedade profissional.',
     stack: ['React', 'Tailwind', 'Vite', 'UI Motion'],
-    bullets: [
-      'Hero com CTA e prova de valor',
-      'Showcase interativo com visualização rápida',
-      'Linguagem visual moderna inspirada em produtos premium',
-    ],
+    bullets: ['Hero com CTA', 'Showcase interativo', 'Linguagem visual premium'],
+    problem:
+      'O portfolio anterior nao evidenciava com rapidez o valor entregue, a stack e a variedade de contextos atendidos.',
+    solution:
+      'Reestruturei a narrativa visual com hierarquia forte, leitura guiada e vitrine de projetos integrada a uma experiência mais memorável.',
     image: portfolioPreview,
     badgeClass: 'from-amber-300/20 via-orange-300/10 to-transparent',
     ringClass: 'border-amber-200/30',
@@ -191,24 +195,19 @@ const capabilities = [
 ]
 
 const ideSections = [
-  { id: 'topo', label: 'Início', fileName: 'topo.tsx' },
-  { id: 'sobre', label: 'Sobre', fileName: 'sobre.tsx' },
-  { id: 'projetos', label: 'Projetos', fileName: 'projetos.tsx' },
-  { id: 'stack', label: 'Stack', fileName: 'stack.tsx' },
+  { id: 'topo', label: 'Início', fileName: 'overview.tsx' },
+  { id: 'sobre', label: 'Sobre', fileName: 'sobre-julio.tsx' },
+  { id: 'projetos', label: 'Projetos', fileName: 'sistemas-em-producao.tsx' },
+  { id: 'stack', label: 'Stack', fileName: 'stack-principal.tsx' },
   { id: 'contato', label: 'Contato', fileName: 'contato.tsx' },
 ] as const
 
 const Home = () => {
-  const [selectedProjectId, setSelectedProjectId] = useState(quickProjects[0].id)
   const [isExplorerOpen, setIsExplorerOpen] = useState(true)
   const [activeSectionId, setActiveSectionId] =
     useState<(typeof ideSections)[number]['id']>('topo')
 
   const editorScrollRef = useRef<HTMLDivElement | null>(null)
-
-  const selectedProject =
-    quickProjects.find((project) => project.id === selectedProjectId) ??
-    quickProjects[0]
 
   const activeSection = useMemo(
     () => ideSections.find((section) => section.id === activeSectionId) ?? ideSections[0],
@@ -282,14 +281,6 @@ const Home = () => {
 
   return (
     <div className="relative flex h-screen flex-col gap-4 overflow-hidden px-6 py-7 smLaptop:px-12 smLaptop:py-10">
-      <div className="mx-auto flex w-full max-w-[1480px] flex-wrap items-center justify-center gap-3 text-center text-xs font-semibold tracking-[0.18em] text-[rgba(222,224,239,0.7)]">
-        <div className="rounded-full border border-[rgba(222,224,239,0.14)] bg-white/5 px-4 py-2">
-          9+ anos de experiência
-        </div>
-        <div className="rounded-full border border-[rgba(222,224,239,0.14)] bg-white/5 px-4 py-2">
-          Impacto em Bayer, Cargill, Coopercitrus, Argo, XMobots, Órgãos públicos entre outros
-        </div>
-      </div>
       <div className="ide-window mx-auto flex w-full max-w-[1480px] flex-1 flex-col overflow-hidden rounded-[22px] min-h-0">
         <div className="ide-titlebar flex items-center justify-between px-4">
           <div className="flex items-center gap-2">
@@ -392,24 +383,37 @@ const Home = () => {
             </div>
 
             <div ref={editorScrollRef} className="ide-scroll min-h-0 flex-1 overflow-y-auto">
-              <div className="mx-auto w-full max-w-[1260px] px-7 py-10 smLaptop:px-14 smLaptop:py-14">
+              <div className="mx-auto w-full max-w-[1260px] px-7 pb-6 pt-10 smLaptop:px-14 smLaptop:pb-8 smLaptop:pt-14">
+                <section
+                  className="mb-10 flex flex-wrap items-center justify-center gap-3 text-center text-[11px] font-semibold tracking-[0.18em] text-[rgba(222,224,239,0.7)]"
+                >
+                  <div className="rounded-full border border-[rgba(222,224,239,0.14)] bg-white/5 px-4 py-2">
+                    9+ anos de experiência
+                  </div>
+                  <div className="rounded-full border border-[rgba(222,224,239,0.14)] bg-white/5 px-4 py-2">
+                    Bayer, Cargill, Coopercitrus, Argo, XMobots e órgãos públicos
+                  </div>
+                </section>
+
                 <section
                   id="topo"
                   data-ide-section="true"
-                  className="mb-16 mt-16 grid gap-10 smLaptop:grid-cols-[minmax(0,1.2fr)_minmax(340px,0.8fr)] smLaptop:items-start"
+                  className="mb-14 grid gap-6 border-b border-[rgba(222,224,239,0.08)] pb-12 smLaptop:grid-cols-[minmax(0,1.1fr)_360px]"
                 >
                   <div>
-                    <span className="eyebrow mb-6">Senior Front-end Engineer</span>
-                    <h1 className="section-heading max-w-4xl text-[clamp(2.7rem,4.8vw,5.25rem)] font-semibold leading-[0.92] text-[var(--sp-base06)]">
-                      Interfaces modernas com clareza, estética forte e resultado real.
+                    <span className="eyebrow mb-5">Senior Front-end Engineer</span>
+                    <h1 className="section-heading max-w-4xl text-[clamp(2.4rem,4.5vw,4.8rem)] font-semibold leading-[0.94] text-[var(--sp-base06)]">
+                      Construo interfaces para produtos reais, com clareza visual e leitura rápida
+                      mesmo em cenários complexos.
                     </h1>
-                    <p className="mt-7 max-w-2xl text-lg leading-8 text-[rgba(222,224,239,0.76)] smPhone:text-base smPhone:leading-7">
-                      Sou Julio Chiuchi, front-end sênior com DNA em React.js, paixão por UX e foco
-                      em transformar requisitos complexos em produtos desejáveis, performáticos e
-                      fáceis de usar.
+                    <p className="mt-6 max-w-2xl text-base leading-8 text-[rgba(222,224,239,0.78)]">
+                      O objetivo desta janela é o mesmo do site de referência: transformar currículo
+                      e portfólio em uma narrativa mais técnica, direta e agradável de explorar.
+                      Aqui, adaptei essa leitura para o espaço menor da IDE, mantendo hierarquia,
+                      contexto e prova de valor.
                     </p>
 
-                    <div className="mt-10 flex flex-col gap-3 smPhone:items-stretch mdPhone:flex-row mdPhone:items-center">
+                    <div className="mt-8 flex flex-col gap-3 smPhone:items-stretch mdPhone:flex-row mdPhone:items-center">
                       <button
                         type="button"
                         onClick={() => scrollToSection('projetos')}
@@ -419,62 +423,125 @@ const Home = () => {
                       </button>
                       <button
                         type="button"
-                        onClick={() => scrollToSection('sobre')}
+                        onClick={() => scrollToSection('stack')}
                         className="inline-flex items-center justify-center rounded-full border border-[rgba(222,224,239,0.14)] bg-white/5 px-7 py-3.5 text-sm font-semibold text-[rgba(222,224,239,0.9)] transition hover:border-[rgba(222,224,239,0.22)] hover:bg-white/10"
                       >
-                        Conhecer meu perfil
+                        Ver stack
                       </button>
                     </div>
 
-                    <div className="mt-10 flex flex-wrap gap-3 text-sm text-[rgba(222,224,239,0.74)]">
-                      <span className="rounded-full border border-[rgba(160,182,232,0.22)] bg-[rgba(160,182,232,0.08)] px-4 py-2">
-                        React Specialist
-                      </span>
-                      <span className="rounded-full border border-[rgba(112,155,189,0.2)] bg-[rgba(112,155,189,0.08)] px-4 py-2">
-                        UX com foco em clareza
-                      </span>
-                      <span className="rounded-full border border-[rgba(163,146,220,0.22)] bg-[rgba(163,146,220,0.08)] px-4 py-2">
-                        Web e Mobile
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="glass-panel-strong relative overflow-hidden rounded-[32px] p-6 smPhone:p-5 smLaptop:p-7">
-                    <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[rgba(163,146,220,0.18)] to-transparent" />
-                    <div className="relative flex items-start gap-4">
-                      <img
-                        src="https://github.com/juliochiuchi.png"
-                        alt="Foto de perfil de Julio Chiuchi"
-                        className="h-24 w-24 rounded-[28px] border border-[rgba(222,224,239,0.12)] object-cover shadow-2xl shadow-[rgba(21,23,38,0.55)] smPhone:h-20 smPhone:w-20"
-                      />
-                      <div>
-                        <p className="text-sm uppercase tracking-[0.24em] text-[rgba(141,143,158,0.9)]">
-                          Perfil
+                    <div className="mt-8 grid gap-3 smPhone:grid-cols-2 xl:grid-cols-4">
+                      <div className="rounded-[24px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] px-4 py-4">
+                        <p className="text-xs uppercase tracking-[0.22em] text-[rgba(141,143,158,0.9)]">
+                          Foco
                         </p>
-                        <h2 className="section-heading mt-2 text-3xl font-semibold text-[var(--sp-base06)] smPhone:text-2xl">
-                          Julio <span className="text-gradient">Chiuchi</span>
-                        </h2>
-                        <p className="mt-2 text-sm leading-6 text-[rgba(222,224,239,0.74)]">
-                          ReactJS, TypeScript, TailwindCSS, TanStack, Vite, NextJS, React Native e
-                          NodeJS.
+                        <p className="mt-2 text-sm font-medium leading-6 text-[rgba(222,224,239,0.92)]">
+                          Interfaces escaláveis com UX clara e comportamento consistente.
+                        </p>
+                      </div>
+                      <div className="rounded-[24px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] px-4 py-4">
+                        <p className="text-xs uppercase tracking-[0.22em] text-[rgba(141,143,158,0.9)]">
+                          Contexto
+                        </p>
+                        <p className="mt-2 text-sm font-medium leading-6 text-[rgba(222,224,239,0.92)]">
+                          Enterprise, admin, web e mobile com regras de negócio reais.
+                        </p>
+                      </div>
+                      <div className="rounded-[24px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] px-4 py-4">
+                        <p className="text-xs uppercase tracking-[0.22em] text-[rgba(141,143,158,0.9)]">
+                          Entrega
+                        </p>
+                        <p className="mt-2 text-sm font-medium leading-6 text-[rgba(222,224,239,0.92)]">
+                          Design, implementação, refinamento e evolução contínua do produto.
+                        </p>
+                      </div>
+                      <div className="rounded-[24px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] px-4 py-4">
+                        <p className="text-xs uppercase tracking-[0.22em] text-[rgba(141,143,158,0.9)]">
+                          Ferramental
+                        </p>
+                        <p className="mt-2 text-sm font-medium leading-6 text-[rgba(222,224,239,0.92)]">
+                          React, TypeScript, Tailwind, TanStack, NextJS, entre outros.
                         </p>
                       </div>
                     </div>
+                  </div>
 
-                    <div className="mt-8 grid gap-3">
-                      {highlights.map((item) => (
-                        <div
-                          key={item.title}
-                          className="rounded-[24px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] p-4"
-                        >
-                          <p className="text-sm font-semibold text-[rgba(222,224,239,0.94)]">
-                            {item.title}
-                          </p>
-                          <p className="mt-2 text-sm leading-6 text-[rgba(141,143,158,0.92)]">
-                            {item.description}
+                  <div className="glass-panel-strong relative overflow-hidden rounded-[30px] p-6">
+                    <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[rgba(160,182,232,0.16)] to-transparent" />
+                    <div className="relative">
+                      <p className="text-xs font-semibold tracking-[0.22em] text-[rgba(141,143,158,0.92)]">
+                        // PERFIL
+                      </p>
+                      <div className="mt-5 flex items-start gap-4">
+                        <img
+                          src="https://github.com/juliochiuchi.png"
+                          alt="Foto de perfil de Julio Chiuchi"
+                          className="h-24 w-24 rounded-[26px] border border-[rgba(222,224,239,0.12)] object-cover shadow-2xl shadow-[rgba(21,23,38,0.45)]"
+                        />
+                        <div className="min-w-0">
+                          <h2 className="section-heading text-3xl font-semibold text-[var(--sp-base06)]">
+                            Julio <span className="text-gradient">Chiuchi</span>
+                          </h2>
+                          <p className="mt-2 text-sm leading-6 text-[rgba(222,224,239,0.74)]">
+                            Front-end sênior com foco em produto, UX, componentização e interfaces
+                            preparadas para uso real.
                           </p>
                         </div>
-                      ))}
+                      </div>
+
+                      <div className="mt-6 flex flex-wrap gap-2">
+                        {['ReactJS', 'TypeScript', 'TailwindCSS', 'NextJS', 'Zod', 'TanStack Router', 'GIT', 'TanStack Query'].map(
+                          (item) => (
+                            <span
+                              key={item}
+                              className="rounded-full border border-[rgba(222,224,239,0.12)] bg-white/5 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[rgba(222,224,239,0.82)]"
+                            >
+                              {item}
+                            </span>
+                          )
+                        )}
+                      </div>
+
+                      <div className="mt-6 grid gap-3">
+                        <div className="rounded-[22px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] px-4 py-3">
+                          <p className="text-sm font-semibold text-[rgba(222,224,239,0.94)]">
+                            Dominio
+                          </p>
+                          <p className="mt-1 text-sm leading-6 text-[rgba(141,143,158,0.92)]">
+                            Produtos enterprise, dashboards, fluxos administrativos, institucional e
+                            utilitários.
+                          </p>
+                        </div>
+                        <div className="rounded-[22px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] px-4 py-3">
+                          <p className="text-sm font-semibold text-[rgba(222,224,239,0.94)]">
+                            Habilidade
+                          </p>
+                          <p className="mt-1 text-sm leading-6 text-[rgba(141,143,158,0.92)]">
+                            UX clara, componentização reutilizável, performance percebida e cuidado
+                            com consistência visual.
+                          </p>
+                        </div>
+                        <div className="rounded-[22px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] px-4 py-3">
+                          <p className="text-sm font-semibold text-[rgba(222,224,239,0.94)]">
+                            Contexto
+                          </p>
+                          <p className="mt-1 text-sm leading-6 text-[rgba(141,143,158,0.92)]">
+                            Entregas para empresas de grande porte e projetos autorais com leitura
+                            simples e manutenção sustentável.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="mt-6 overflow-hidden rounded-[24px] border border-[rgba(222,224,239,0.12)] bg-[rgba(12,13,20,0.45)] px-4 py-4 font-mono text-[12.5px] leading-6 text-[rgba(222,224,239,0.76)]">
+                        <p className="text-[rgba(141,143,158,0.9)]">// session.log</p>
+                        <p className="mt-2">
+                          [08:30] loaded `cv-julio-senior-frontend-react.pdf`
+                        </p>
+                        <p>[08:31] mapped portfolio into IDE reading experience</p>
+                        <p>[08:32] condensed content for smaller viewport and faster scan</p>
+                        <p>[08:33] highlighted projects, stack and professional context</p>
+                        <p>[08:34] status: ready for recruiter, tech lead and product team</p>
+                      </div>
                     </div>
                   </div>
                 </section>
@@ -482,218 +549,161 @@ const Home = () => {
                 <section
                   id="sobre"
                   data-ide-section="true"
-                  className="grid gap-5 py-10 smLaptop:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)]"
+                  className="mb-14 grid gap-5 border-b border-[rgba(222,224,239,0.08)] pb-12 smLaptop:grid-cols-[minmax(0,1fr)_minmax(320px,0.78fr)]"
                 >
-                  <div className="glass-panel rounded-[32px] p-7 smPhone:p-5 smLaptop:p-8">
-                    <span className="eyebrow mb-5">Sobre mim</span>
+                  <div className="glass-panel rounded-[30px] p-7 smPhone:p-5 smLaptop:p-8">
+                    <span className="eyebrow mb-5">// SOBRE</span>
                     <h2 className="section-heading max-w-2xl text-4xl font-semibold text-[var(--sp-base06)] smPhone:text-3xl">
-                      Experiência sênior com repertório técnico e sensibilidade de produto.
+                      Uma narrativa mais técnica sobre quem eu sou.
                     </h2>
                     <p className="mt-6 max-w-2xl text-base leading-8 text-[rgba(222,224,239,0.76)]">
-                      Minha jornada combina código limpo, boas decisões de interface e responsabilidade
-                      de entrega. Já atuei em produtos para grandes empresas e na modernização de
-                      sistemas públicos, sempre com foco em navegação fluida, clareza de uso e confiança
-                      visual.
+                      Atuo como front-end sênior com forte base em React e TypeScript,
+                      transitando entre produto, UX e implementação. O repertório mostrado aqui vem
+                      dos seus projetos e do seu CV: interfaces para empresas de alto nível de
+                      exigência, soluções próprias, painéis administrativos e experiências com
+                      preocupação real com usabilidade.
+                    </p>
+                    <p className="mt-5 max-w-2xl text-base leading-8 text-[rgba(222,224,239,0.76)]">
+                      A adaptação deste layout considera um cenário mais compacto que o site de
+                      referência. Por isso, a hierarquia foi condensada em blocos densos, com títulos
+                      curtos, painéis de leitura rápida e detalhes acessados por seleção de projeto.
                     </p>
                   </div>
 
-                  <div className="grid gap-5">
-                    <div className="glass-panel rounded-[28px] p-6">
-                      <p className="text-sm uppercase tracking-[0.2em] text-[rgba(112,155,189,0.9)]">
-                        Experiência
-                      </p>
-                      <p className="mt-3 text-base leading-7 text-[rgba(222,224,239,0.74)]">
-                        Entregas para Bayer, Cargill, Coopercitrus, Argo e XMobots, além da
-                        transformação digital de sistemas públicos.
-                      </p>
-                    </div>
-
-                    <div className="glass-panel rounded-[28px] p-6">
-                      <p className="text-sm uppercase tracking-[0.2em] text-[rgba(160,182,232,0.9)]">
-                        Formação
-                      </p>
-                      <p className="mt-3 text-base leading-7 text-[rgba(222,224,239,0.74)]">
-                        Sistemas de Informação pela UNIFEV e formação prática contínua com foco em
-                        stack moderna, performance e experiência do usuário.
-                      </p>
-                    </div>
-
-                    <div className="glass-panel rounded-[28px] p-6">
-                      <p className="text-sm uppercase tracking-[0.2em] text-[rgba(163,146,220,0.9)]">
-                        Modo de trabalho
-                      </p>
-                      <p className="mt-3 text-base leading-7 text-[rgba(222,224,239,0.74)]">
-                        Colaborativo, proativo e orientado a contexto, com IA como aliada para acelerar
-                        qualidade, análise e refatoração.
-                      </p>
-                    </div>
+                  <div className="grid gap-4">
+                    {highlights.map((item, index) => (
+                      <div key={item.title} className="glass-panel rounded-[26px] p-5">
+                        <p className="text-xs uppercase tracking-[0.22em] text-[rgba(141,143,158,0.88)]">
+                          {String(index + 1).padStart(2, '0')}
+                        </p>
+                        <h3 className="mt-2 text-lg font-semibold text-[rgba(222,224,239,0.95)]">
+                          {item.title}
+                        </h3>
+                        <p className="mt-2 text-sm leading-6 text-[rgba(141,143,158,0.92)]">
+                          {item.description}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 </section>
 
-                <section id="projetos" data-ide-section="true" className="py-10">
+                <section
+                  id="projetos"
+                  data-ide-section="true"
+                  className="mb-14 border-b border-[rgba(222,224,239,0.08)] pb-12"
+                >
                   <div className="mb-8 max-w-3xl">
-                    <span className="eyebrow mb-5">Projetos e cases</span>
+                    <span className="eyebrow mb-5">// PROJETOS</span>
                     <h2 className="section-heading text-4xl font-semibold text-[var(--sp-base06)] smPhone:text-3xl">
-                      Uma leitura rápida do que eu construo.
+                      Sistemas em produção<span className="text-gradient">.</span>
                     </h2>
                     <p className="mt-4 text-base leading-8 text-[rgba(222,224,239,0.76)]">
-                      Selecione um case para ver contexto, impacto, stack e uma visualização rápida do
-                      tipo de experiência que costumo entregar.
+                      Cada projeto representa um problema real resolvido com engenharia de software
+                      de verdade.
                     </p>
                   </div>
 
-                  <div className="grid gap-6 smLaptop:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-                    <div className="grid gap-4">
-                      {quickProjects.map((project) => {
-                        const isActive = project.id === selectedProject.id
+                  <div className="grid gap-6">
+                    {quickProjects.map((project, index) => (
+                      <article
+                        key={project.id}
+                        className="glass-panel relative overflow-hidden rounded-[18px] border border-[rgba(222,224,239,0.12)] shadow-[0_18px_60px_rgba(0,0,0,0.22)]"
+                      >
+                        <div className="h-[2px] w-full bg-[linear-gradient(90deg,var(--sp-red),var(--sp-yellow),var(--sp-blue))]" />
+                        <div className="flex items-start justify-between gap-6 px-7 py-7 smPhone:px-5 smPhone:py-5">
+                          <div className="max-w-4xl">
+                            <p className="text-sm font-semibold tracking-[0.2em] text-[var(--sp-red)]">
+                              #{String(index + 1).padStart(2, '0')}
+                            </p>
+                            <h3 className="mt-3 text-[clamp(1.65rem,2.2vw,2.2rem)] font-semibold leading-tight text-[rgba(244,246,251,0.96)]">
+                              {project.title}
+                            </h3>
+                            <p className="mt-1 text-base text-[rgba(141,143,158,0.9)]">
+                              {project.category}
+                            </p>
+                            <p className="mt-6 max-w-5xl text-[1.05rem] leading-8 text-[rgba(222,224,239,0.82)] smPhone:text-base smPhone:leading-7">
+                              {project.summary}
+                            </p>
+                          </div>
 
-                        return (
-                          <button
-                            key={project.id}
-                            type="button"
-                            onClick={() => setSelectedProjectId(project.id)}
-                            aria-pressed={isActive}
-                            className={`glass-panel rounded-[28px] p-5 text-left transition duration-300 hover:-translate-y-1 ${isActive ? 'border-[rgba(222,224,239,0.22)] bg-white/[0.08]' : ''
-                              }`}
-                          >
-                            <div
-                              className={`mb-4 h-24 rounded-[20px] border ${project.ringClass} bg-gradient-to-br ${project.badgeClass}`}
-                            >
-                              <div className="flex h-full items-end p-4">
-                                <span className="rounded-full border border-[rgba(222,224,239,0.14)] bg-[rgba(21,23,38,0.32)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[rgba(222,224,239,0.86)]">
-                                  {project.category}
-                                </span>
-                              </div>
-                            </div>
-
-                            <div className="flex items-start justify-between gap-4">
-                              <div>
-                                <h3 className="text-xl font-semibold text-[rgba(222,224,239,0.96)]">
-                                  {project.title}
-                                </h3>
-                                <p className="mt-2 text-sm leading-6 text-[rgba(141,143,158,0.92)]">
-                                  {project.summary}
-                                </p>
-                              </div>
-                              <span className="mt-1 text-xs uppercase tracking-[0.24em] text-[rgba(141,143,158,0.7)]">
-                                Preview
-                              </span>
-                            </div>
-                          </button>
-                        )
-                      })}
-                    </div>
-
-                    <div className="glass-panel-strong overflow-hidden rounded-[32px] p-5 smPhone:p-4 smLaptop:sticky smLaptop:top-6 smLaptop:p-7">
-                      <div className="flex flex-wrap items-center justify-between gap-3">
-                        <div>
-                          <p className="text-sm uppercase tracking-[0.24em] text-[rgba(141,143,158,0.9)]">
-                            Visão rápida
-                          </p>
-                          <h3 className="section-heading mt-2 text-3xl font-semibold text-[var(--sp-base06)] smPhone:text-2xl">
-                            {selectedProject.title}
-                          </h3>
+                          <div className="pt-1 text-[var(--sp-blue)]">
+                            <VscDebugAlt className="text-xl" />
+                          </div>
                         </div>
-                        <span className="rounded-full border border-[rgba(222,224,239,0.14)] bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.18em] text-[rgba(222,224,239,0.78)]">
-                          {selectedProject.category}
-                        </span>
-                      </div>
 
-                      <div className="mt-6 overflow-hidden rounded-[28px] border border-[rgba(222,224,239,0.12)] bg-[rgba(21,23,38,0.35)]">
-                        {selectedProject.image ? (
-                          <img
-                            src={selectedProject.image}
-                            alt={`Preview do projeto ${selectedProject.title}`}
-                            className="h-[280px] w-full object-cover object-top"
-                          />
-                        ) : (
-                          <div className="h-[280px] w-full bg-[radial-gradient(circle_at_top_left,rgba(160,182,232,0.22),transparent_28%),linear-gradient(180deg,rgba(39,41,56,0.96),rgba(28,30,45,0.88))] p-5">
-                            <div className="flex items-center justify-between rounded-2xl border border-[rgba(222,224,239,0.12)] bg-white/[0.03] px-4 py-3">
-                              <span className="text-xs uppercase tracking-[0.18em] text-[rgba(141,143,158,0.9)]">
-                                Preview UI
-                              </span>
-                              <span className="rounded-full bg-[rgba(112,155,189,0.2)] px-3 py-1 text-xs text-[rgba(222,224,239,0.9)]">
-                                Live context
-                              </span>
+                        <div className="grid gap-8 border-t border-[rgba(222,224,239,0.08)] px-7 py-7 smPhone:px-5 smPhone:py-5 smLaptop:grid-cols-[minmax(0,1fr)_minmax(280px,0.95fr)]">
+                          <div className="grid gap-7">
+                            <div>
+                              <p className="text-xs uppercase tracking-[0.2em] text-[var(--sp-blue)]">
+                                Problema
+                              </p>
+                              <p className="mt-3 text-base leading-8 text-[rgba(222,224,239,0.84)]">
+                                {project.problem ?? project.detail}
+                              </p>
                             </div>
-                            <div className="mt-4 grid h-[200px] grid-cols-[1.1fr_0.9fr] gap-4">
-                              <div className="rounded-[24px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] p-4">
-                                <div className="h-3 w-24 rounded-full bg-[rgba(141,143,158,0.55)]" />
-                                <div className="mt-4 space-y-3">
-                                  <div className="h-10 rounded-2xl bg-[rgba(160,182,232,0.14)]" />
-                                  <div className="h-10 rounded-2xl bg-white/5" />
-                                  <div className="h-10 rounded-2xl bg-white/5" />
-                                </div>
+
+                            <div>
+                              <p className="text-xs uppercase tracking-[0.2em] text-[var(--sp-yellow)]">
+                                Solução
+                              </p>
+                              <p className="mt-3 text-base leading-8 text-[rgba(222,224,239,0.84)]">
+                                {project.solution ?? project.detail}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="grid gap-7">
+                            <div>
+                              <p className="text-xs uppercase tracking-[0.2em] text-[var(--sp-red)]">
+                                Stack
+                              </p>
+                              <div className="mt-3 flex flex-wrap gap-2">
+                                {project.stack.map((item) => (
+                                  <span
+                                    key={item}
+                                    className="rounded-md border border-[rgba(160,182,232,0.22)] bg-[rgba(160,182,232,0.08)] px-3 py-1.5 text-sm font-medium text-[rgba(222,224,239,0.82)]"
+                                  >
+                                    {item}
+                                  </span>
+                                ))}
                               </div>
-                              <div className="flex flex-col gap-4">
-                                <div className="flex-1 rounded-[24px] border border-[rgba(222,224,239,0.12)] bg-gradient-to-br from-[rgba(28,30,45,0.85)] to-[rgba(32,34,49,0.9)] p-4">
-                                  <div className="h-3 w-16 rounded-full bg-[rgba(141,143,158,0.55)]" />
-                                  <div className="mt-5 h-20 rounded-[20px] bg-gradient-to-r from-[rgba(209,145,143,0.2)] to-[rgba(163,146,220,0.2)]" />
-                                </div>
-                                <div className="flex-1 rounded-[24px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] p-4">
-                                  <div className="h-3 w-20 rounded-full bg-[rgba(141,143,158,0.55)]" />
-                                  <div className="mt-4 grid grid-cols-2 gap-3">
-                                    <div className="h-16 rounded-2xl bg-white/5" />
-                                    <div className="h-16 rounded-2xl bg-white/5" />
-                                  </div>
-                                </div>
+                            </div>
+
+                            <div>
+                              <p className="text-xs uppercase tracking-[0.2em] text-[var(--sp-blue)]">
+                                Resultados
+                              </p>
+                              <div className="mt-3 grid gap-2.5">
+                                {project.bullets.map((bullet) => (
+                                  <p
+                                    key={bullet}
+                                    className="flex items-start gap-3 text-base text-[rgba(222,224,239,0.84)]"
+                                  >
+                                    <span className="mt-1 text-[var(--sp-red)]">→</span>
+                                    <span>{bullet}</span>
+                                  </p>
+                                ))}
                               </div>
                             </div>
                           </div>
-                        )}
-                      </div>
-
-                      <p className="mt-6 text-base leading-8 text-[rgba(222,224,239,0.76)]">
-                        {selectedProject.detail}
-                      </p>
-
-                      <div className="mt-6 rounded-[24px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] p-5">
-                        <p className="text-sm uppercase tracking-[0.18em] text-[rgba(141,143,158,0.9)]">
-                          Impacto percebido
-                        </p>
-                        <p className="mt-2 text-base font-medium text-[rgba(222,224,239,0.95)]">
-                          {selectedProject.impact}
-                        </p>
-                      </div>
-
-                      <div className="mt-6 flex flex-wrap gap-2">
-                        {selectedProject.stack.map((item) => (
-                          <span
-                            key={item}
-                            className="rounded-full border border-[rgba(222,224,239,0.12)] bg-white/5 px-3 py-2 text-sm text-[rgba(222,224,239,0.74)]"
-                          >
-                            {item}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="mt-6 grid gap-3">
-                        {selectedProject.bullets.map((bullet) => (
-                          <div
-                            key={bullet}
-                            className="rounded-[20px] border border-[rgba(222,224,239,0.1)] bg-white/[0.03] px-4 py-3 text-sm leading-6 text-[rgba(222,224,239,0.74)]"
-                          >
-                            {bullet}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                        </div>
+                      </article>
+                    ))}
                   </div>
                 </section>
-
-                <section id="stack" data-ide-section="true" className="py-10">
+                <section id="stack" data-ide-section="true" className="pb-0">
                   <div className="mb-8 max-w-3xl">
-                    <span className="eyebrow mb-5">Stack principal</span>
+                    <span className="eyebrow mb-5">// STACK</span>
                     <h2 className="section-heading text-4xl font-semibold text-[var(--sp-base06)] smPhone:text-3xl">
-                      Tecnologias e ferramentas que sustentam essa entrega.
+                      Ferramental principal para transformar repertório em entrega.
                     </h2>
                     <p className="mt-4 text-base leading-8 text-[rgba(222,224,239,0.76)]">
-                      Um setup moderno para construir interfaces consistentes, escaláveis e agradáveis de
-                      usar.
+                      Uma combinação pensada para velocidade de implementação, consistência visual e
+                      manutenção sustentável.
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 mdPhone:grid-cols-3 smLaptop:grid-cols-5">
+                  <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-4 smPhone:grid-cols-[repeat(auto-fit,minmax(160px,1fr))] smLaptop:grid-cols-[repeat(auto-fit,minmax(170px,1fr))]">
                     <CardStack name={capabilities[0]} icon={FaReact} />
                     <CardStack name={capabilities[1]} icon={BiLogoTypescript} />
                     <CardStack name={capabilities[2]} icon={BiLogoTailwindCss} />
@@ -712,9 +722,9 @@ const Home = () => {
                     <CardStack name={capabilities[15]} icon={FaCss3Alt} />
                     <CardStack name={capabilities[16]} icon={RiJavascriptFill} />
                   </div>
-                </section>
 
-                <Footer />
+                  <Footer />
+                </section>
               </div>
             </div>
           </div>
