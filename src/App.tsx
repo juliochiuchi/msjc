@@ -1,7 +1,5 @@
 import Home from './pages/Home'
 
-const App = () => {
+export const App = () => {
   return <Home />
 }
-
-export default App
