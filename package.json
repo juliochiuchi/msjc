@@ -4,12 +4,13 @@
   "version": "1.0.0",
   "type": "module",
   "engines": {
-    "node": ">=22 <25"
+    "node": ">=20 <25"
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc --pretty false && vite build",
-    "build:vercel": "node -v && npm -v && tsc --pretty false && vite build --debug",
+    "prebuild": "node -e \"console.log('BUILD_ENV', { node: process.version, platform: process.platform, arch: process.arch })\"",
+    "build": "tsc --pretty false && vite build --debug",
+    "build:vercel": "tsc --pretty false && vite build --debug",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
