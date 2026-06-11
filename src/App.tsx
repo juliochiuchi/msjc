@@ -1,5 +1,5 @@
 import Home from './pages/Home'
 
-export const App = () => {
+export function App() {
   return <Home />
 }
