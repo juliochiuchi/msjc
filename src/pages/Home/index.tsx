@@ -294,7 +294,6 @@ const Home = () => {
               &gt;_ ~/julio-chiuchi
             </span>
           </div>
-
           <div className="hidden w-[88px] smLaptop:block" />
         </div>
 
