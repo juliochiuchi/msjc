@@ -34,7 +34,7 @@ const quickProjects = [
     summary:
       'Interfaces preparadas para uso recorrente, estados bem tratados e experiências que ajudam o usuário a tomar decisões com menos fricção.',
     detail:
-      'Entregas para Bayer, Cargill, Coopercitrus, Argo e XMobots com foco em clareza, performance e confiança visual.',
+      'Entregas para Bayer, Cargill, Coopercitrus, Tracker Monitora, Argo Solutions, XMobots, Coruripe e Informa Markets com foco em clareza, performance e confiança visual.',
     impact: 'UX clara para produtos com alta exigência operacional.',
     stack: ['React', 'TypeScript', 'Tailwind', 'TanStack Query'],
     bullets: [
@@ -149,14 +149,14 @@ const quickProjects = [
 
 const highlights = [
   {
-    title: 'React com maturidade de produto',
+    title: 'Empresas com operação crítica',
     description:
-      'Componentes reutilizáveis, navegação fluida e foco em uma experiência consistente.',
+      'Produtos entregues para Bayer, Cargill, Coopercitrus, Tracker Monitora, Argo Solutions, XMobots, Coruripe e Informa Markets.',
   },
   {
-    title: 'UX que simplifica complexidade',
+    title: 'Liderança em projetos públicos',
     description:
-      'Decisões de interface pensadas para reduzir fricção e aumentar entendimento.',
+      'Atuação em frentes como Portal da Transparência Web, Holerite Web, módulo de Sistema de Compras e Sistema de Saúde.',
   },
   {
     title: 'Entrega em web e mobile',
@@ -198,7 +198,7 @@ const navSections: Array<(typeof sections)[number]['id']> = ['projetos', 'sobre'
 
 const heroStats = [
   { value: '9+', label: 'anos de experiência' },
-  { value: '6+', label: 'marcas atendidas' },
+  { value: '8+', label: 'marcas atendidas' },
   { value: 'Web + Mobile', label: 'entregas em produção' },
 ]
 
@@ -365,7 +365,7 @@ const Home = () => {
             </h1>
 
             <p className="mt-7 max-w-3xl text-base leading-8 text-[rgba(222,224,239,0.72)]">
-              Front-end sênior com base forte em React e TypeScript, transitando entre produto, UX e
+              Front-end sênior com base forte em React, TypeScript e TailwindCSS, transitando entre produto, UX e
               implementação. Entregas para plataformas enterprise, painéis administrativos e
               experiências com comportamento consistente.
             </p>
@@ -521,7 +521,7 @@ const Home = () => {
 
         <section id="projetos" data-section="true" className="mt-20">
           <p className="font-mono text-[13px] tracking-[0.18em] text-[rgba(141,143,158,0.92)]">
-            // PROJETOS
+            // PROJETOS PESSOAIS
           </p>
           <h2 className="section-heading mt-4 text-4xl font-semibold text-[var(--sp-base06)] smPhone:text-3xl">
             Sistemas em produção<span className="text-gradient">.</span>
@@ -728,15 +728,38 @@ const Home = () => {
             // SOBRE
           </p>
           <h2 className="section-heading mt-4 text-4xl font-semibold text-[var(--sp-base06)] smPhone:text-3xl">
-            Julio Chiuchi<span className="text-gradient">.</span>
+            Julio Chiuchi<span className="text-gradient"></span>
           </h2>
 
           <div className="mt-10 grid gap-6 smLaptop:grid-cols-[minmax(0,1fr)_minmax(320px,0.72fr)]">
             <div className="glass-panel rounded-[22px] border border-[rgba(222,224,239,0.12)] px-7 py-7 smPhone:px-5 smPhone:py-5">
               <p className="text-base leading-8 text-[rgba(222,224,239,0.76)]">
-                Atuo como front-end sênior com forte base em React e TypeScript, transitando entre
-                produto, UX e implementação. O repertório vem de projetos enterprise e produtos
-                autorais com leitura simples e manutenção sustentável.
+                Atuo como{' '}
+                <span className="font-semibold text-[rgba(222,224,239,0.94)]">
+                  front-end sênior
+                </span>{' '}
+                com forte base em{' '}
+                <span className="text-[var(--sp-blue)]">React, TypeScript e TailwindCSS</span>, transitando
+                entre produto, UX e implementação. O repertório vem de projetos enterprise e
+                produtos autorais com leitura simples e manutenção sustentável, com entregas para{' '}
+                <span className="font-semibold text-[rgba(222,224,239,0.94)]">
+                  Bayer, Cargill, Coopercitrus, Tracker Monitora, Argo Solutions, XMobots,
+                  Coruripe e Informa Markets
+                </span>
+                .
+              </p>
+              <p className="mt-5 text-base leading-8 text-[rgba(222,224,239,0.76)]">
+                Também liderei projetos para{' '}
+                <span className="font-semibold text-[rgba(222,224,239,0.94)]">
+                  órgão público
+                </span>
+                , como a migração de um sistema desktop legado de{' '}
+                <span className="text-[var(--sp-blue)]">Portal da Transparência para Web</span>,
+                além de iniciativas como{' '}
+                <span className="font-semibold text-[rgba(222,224,239,0.94)]">
+                  Holerite Web, módulo de Sistema de Compras e Sistema de Saúde
+                </span>
+                .
               </p>
               <p className="mt-5 text-base leading-8 text-[rgba(222,224,239,0.76)]">
                 <span className="text-[rgba(222,224,239,0.9)]">
