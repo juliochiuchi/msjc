@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaCss3Alt, FaReact } from 'react-icons/fa'
 import { FaCode } from 'react-icons/fa6'
 import {
@@ -16,15 +16,6 @@ import {
 import { IoLogoHtml5 } from 'react-icons/io'
 import { RiJavascriptFill } from 'react-icons/ri'
 import { SiVite } from 'react-icons/si'
-import {
-  VscChevronDown,
-  VscDebugAlt,
-  VscExtensions,
-  VscFile,
-  VscFiles,
-  VscSearch,
-  VscSourceControl,
-} from 'react-icons/vsc'
 
 import portfolioPreview from '../../assets/psmsjc-home.png'
 import ipimPreview from '../../assets/ipim-home.png'
@@ -194,53 +185,104 @@ const capabilities = [
   'JavaScript',
 ]
 
-const ideSections = [
-  { id: 'topo', label: 'Início', fileName: 'overview.tsx' },
-  { id: 'sobre', label: 'Sobre', fileName: 'sobre-julio.tsx' },
-  { id: 'projetos', label: 'Projetos', fileName: 'sistemas-em-producao.tsx' },
-  { id: 'stack', label: 'Stack', fileName: 'stack-principal.tsx' },
-  { id: 'contato', label: 'Contato', fileName: 'contato.tsx' },
+const sections = [
+  { id: 'topo', label: 'Início' },
+  { id: 'impacto', label: 'Impacto' },
+  { id: 'sobre', label: 'Sobre' },
+  { id: 'projetos', label: 'Projetos' },
+  { id: 'stack', label: 'Stack' },
+  { id: 'contato', label: 'Contato' },
 ] as const
 
+const navSections: Array<(typeof sections)[number]['id']> = ['projetos', 'sobre', 'contato']
+
+const heroStats = [
+  { value: '9+', label: 'anos de experiência' },
+  { value: '6+', label: 'marcas atendidas' },
+  { value: 'Web + Mobile', label: 'entregas em produção' },
+]
+
+const authorityCards = [
+  {
+    metric: '9+',
+    metricLabel: 'anos',
+    title: 'Senior front-end',
+    detail: 'Interfaces escaláveis com UX clara e leitura rápida.',
+  },
+  {
+    metric: 'React',
+    metricLabel: 'produto',
+    title: 'Componentização',
+    detail: 'Base de componentes reutilizáveis, acessíveis e consistentes.',
+  },
+  {
+    metric: 'TS',
+    metricLabel: 'tipagem',
+    title: 'Qualidade',
+    detail: 'Código previsível com validação e boas práticas de DX.',
+  },
+  {
+    metric: 'Admin',
+    metricLabel: 'UI',
+    title: 'Enterprise',
+    detail: 'Painéis e fluxos críticos para operação diária.',
+  },
+  {
+    metric: 'Mobile',
+    metricLabel: 'RN',
+    title: 'Multiplataforma',
+    detail: 'Do browser ao React Native com repertório pragmático.',
+  },
+  {
+    metric: 'UX',
+    metricLabel: 'clara',
+    title: 'Leitura rápida',
+    detail: 'Hierarquia visual forte para reduzir fricção e acelerar entendimento.',
+  },
+]
+
+const stackGroups = [
+  {
+    title: 'Frontend',
+    items: ['ReactJS', 'Typescript', 'Vite', 'NextJS', 'HTML', 'CSS', 'JavaScript'],
+  },
+  {
+    title: 'Estilo & UI',
+    items: ['TailwindCSS', 'Styled Components', 'Shadcn/UI'],
+  },
+  {
+    title: 'Dados & Estado',
+    items: ['TanStack Query', 'TanStack Router', 'Zod'],
+  },
+  {
+    title: 'Mobile',
+    items: ['React Native', 'Expo'],
+  },
+  {
+    title: 'Tooling',
+    items: ['Git', 'NodeJS'],
+  },
+]
+
 const Home = () => {
-  const [isExplorerOpen, setIsExplorerOpen] = useState(true)
   const [activeSectionId, setActiveSectionId] =
-    useState<(typeof ideSections)[number]['id']>('topo')
+    useState<(typeof sections)[number]['id']>('topo')
 
-  const editorScrollRef = useRef<HTMLDivElement | null>(null)
-
-  const activeSection = useMemo(
-    () => ideSections.find((section) => section.id === activeSectionId) ?? ideSections[0],
-    [activeSectionId]
-  )
-
-  const scrollToSection = (sectionId: (typeof ideSections)[number]['id']) => {
-    const container = editorScrollRef.current
-
-    if (!container) {
-      return
-    }
-
+  const scrollToSection = (sectionId: (typeof sections)[number]['id']) => {
     setActiveSectionId(sectionId)
 
     if (sectionId === 'topo') {
-      container.scrollTo({ top: 0, behavior: 'smooth' })
+      window.scrollTo({ top: 0, behavior: 'smooth' })
       return
     }
 
-    const target = container.querySelector<HTMLElement>(`#${sectionId}`)
+    const target = document.getElementById(sectionId)
     target?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   useEffect(() => {
-    const root = editorScrollRef.current
-
-    if (!root) {
-      return
-    }
-
     const candidates = Array.from(
-      root.querySelectorAll<HTMLElement>('[data-ide-section="true"]')
+      document.querySelectorAll<HTMLElement>('[data-section="true"]')
     )
 
     if (!candidates.length) {
@@ -249,12 +291,11 @@ const Home = () => {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const rootTop = root.getBoundingClientRect().top
         const visible = entries
           .filter((entry) => entry.isIntersecting)
           .map((entry) => ({
             id: entry.target.getAttribute('id'),
-            distance: Math.abs(entry.boundingClientRect.top - rootTop - 12),
+            distance: Math.abs(entry.boundingClientRect.top - 96),
           }))
           .filter((item) => Boolean(item.id))
           .sort((a, b) => a.distance - b.distance)
@@ -268,9 +309,8 @@ const Home = () => {
         setActiveSectionId((current) => (current === nextId ? current : (nextId as any)))
       },
       {
-        root,
-        threshold: 0,
-        rootMargin: '0px 0px -78% 0px',
+        threshold: 0.15,
+        rootMargin: '-96px 0px -72% 0px',
       }
     )
 
@@ -280,454 +320,442 @@ const Home = () => {
   }, [])
 
   return (
-    <div className="relative flex h-screen flex-col gap-4 overflow-hidden px-6 py-7 smLaptop:px-12 smLaptop:py-10">
-      <div className="ide-window mx-auto flex w-full max-w-[1480px] flex-1 flex-col overflow-hidden rounded-[22px] min-h-0">
-        <div className="ide-titlebar flex items-center justify-between px-4">
-          <div className="flex items-center gap-2">
-            <span className="h-3 w-3 rounded-full bg-[#ff5f57] shadow-[0_0_0_1px_rgba(0,0,0,0.35)]" />
-            <span className="h-3 w-3 rounded-full bg-[#febc2e] shadow-[0_0_0_1px_rgba(0,0,0,0.35)]" />
-            <span className="h-3 w-3 rounded-full bg-[#28c840] shadow-[0_0_0_1px_rgba(0,0,0,0.35)]" />
-          </div>
-
-          <div className="flex min-w-0 items-center gap-2">
-            <span className="truncate text-xs font-semibold tracking-[0.22em] text-[rgba(222,224,239,0.72)]">
-              &gt;_ ~/julio-chiuchi
-            </span>
-          </div>
-          <div className="hidden w-[88px] smLaptop:block" />
-        </div>
-
-        <div className="flex min-h-0 flex-1">
-          <div className="ide-activitybar flex flex-col items-center gap-2 py-3">
+    <div className="relative min-h-screen overflow-x-hidden px-6 pb-10 pt-7 smLaptop:px-12 smLaptop:pb-14 smLaptop:pt-10">
+      <div className="mx-auto w-full max-w-[1180px]">
+        <header className="relative">
+          <div className="absolute right-0 top-0 flex items-center gap-2">
+            {/* <button
+              type="button"
+              className="glass-panel flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold tracking-[0.18em] text-[rgba(222,224,239,0.92)]"
+              aria-label="Idioma PT"
+            >
+              <span className="h-2 w-2 rounded-full bg-[var(--sp-red)]" />
+              PT
+            </button>
             <button
               type="button"
-              onClick={() => setIsExplorerOpen((current) => !current)}
-              aria-pressed={isExplorerOpen}
-              className={`relative flex h-10 w-10 items-center justify-center rounded-[14px] text-xl transition ${isExplorerOpen ? 'bg-white/10 text-[var(--sp-base06)]' : 'text-[rgba(222,224,239,0.65)] hover:bg-white/5 hover:text-[rgba(222,224,239,0.8)]'
-                }`}
+              className="glass-panel flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold tracking-[0.18em] text-[rgba(222,224,239,0.6)]"
+              aria-label="Idioma EN"
             >
-              <VscFiles />
-              {isExplorerOpen ? (
-                <span className="absolute left-0 top-1/2 h-5 w-1 -translate-y-1/2 rounded-full bg-[var(--sp-red)]" />
-              ) : null}
+              EN
             </button>
-
-            <div className="mt-1 flex flex-col items-center gap-2 text-xl text-[rgba(222,224,239,0.46)]">
-              <div className="flex h-10 w-10 items-center justify-center rounded-[14px]">
-                <VscSearch />
-              </div>
-              <div className="flex h-10 w-10 items-center justify-center rounded-[14px]">
-                <VscSourceControl />
-              </div>
-              <div className="flex h-10 w-10 items-center justify-center rounded-[14px]">
-                <VscDebugAlt />
-              </div>
-              <div className="flex h-10 w-10 items-center justify-center rounded-[14px]">
-                <VscExtensions />
-              </div>
-            </div>
+            <button
+              type="button"
+              className="glass-panel flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold tracking-[0.18em] text-[rgba(222,224,239,0.6)]"
+              aria-label="Idioma ES"
+            >
+              ES
+            </button> */}
           </div>
 
-          {isExplorerOpen ? (
-            <aside className="ide-sidebar hidden min-w-0 flex-col smLaptop:flex">
-              <div className="flex h-[56px] items-center justify-between border-b border-[rgba(222,224,239,0.12)] px-4">
-                <p className="text-xs font-bold tracking-[0.22em] text-[rgba(222,224,239,0.72)]">
-                  EXPLORER
-                </p>
-                <span className="text-[11px] font-semibold tracking-[0.18em] text-[rgba(141,143,158,0.75)]" />
-              </div>
+          <div className="pt-1 font-mono text-[13px] text-[rgba(141,143,158,0.88)]">
+            <span className="text-[var(--sp-blue)]">&gt;_</span> ~/julio-chiuchi{' '}
+            <span className="text-[rgba(222,224,239,0.45)]">|</span> senior front-end engineer
+          </div>
 
-              <div className="px-3 py-3">
-                <div className="flex items-center gap-2 rounded-xl px-2 py-2 text-xs font-semibold tracking-[0.16em] text-[rgba(222,224,239,0.72)]">
-                  <VscChevronDown className="text-sm text-[rgba(222,224,239,0.62)]" />
-                  <span className="uppercase">portfolio</span>
+          <section id="topo" data-section="true" className="pt-12 smLaptop:pt-16">
+            <h1 className="section-heading text-[clamp(3.1rem,6.6vw,5.25rem)] font-semibold leading-[0.92] text-[var(--sp-base06)]">
+              Construo interfaces
+              <br />
+              para produtos reais<span className="text-gradient">.</span>
+              <br />
+              <span className="text-[rgba(141,143,158,0.82)]">
+                Com clareza visual e leitura rápida.
+              </span>
+            </h1>
+
+            <p className="mt-7 max-w-3xl text-base leading-8 text-[rgba(222,224,239,0.72)]">
+              Front-end sênior com base forte em React e TypeScript, transitando entre produto, UX e
+              implementação. Entregas para plataformas enterprise, painéis administrativos e
+              experiências com comportamento consistente.
+            </p>
+
+            <div className="mt-7 flex flex-wrap items-center gap-x-10 gap-y-3 text-sm text-[rgba(141,143,158,0.92)]">
+              {heroStats.map((item) => (
+                <div key={item.label} className="flex items-baseline gap-2">
+                  <span className="text-[var(--sp-blue)]">{item.value}</span>
+                  <span className="text-[12px] tracking-[0.16em]">{item.label}</span>
                 </div>
+              ))}
+            </div>
 
-                <nav className="mt-2 flex flex-col gap-1">
-                  {ideSections.map((section) => {
-                    const isActive = section.id === activeSectionId
-
-                    return (
-                      <button
-                        key={section.id}
-                        type="button"
-                        onClick={() => scrollToSection(section.id)}
-                        className={`flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-sm transition ${isActive ? 'bg-white/10 text-[var(--sp-base06)]' : 'text-[rgba(222,224,239,0.66)] hover:bg-white/5 hover:text-[rgba(222,224,239,0.86)]'
-                          }`}
-                      >
-                        <VscFile className="text-[14px] text-[rgba(160,182,232,0.85)]" />
-                        <span className="truncate font-medium">{section.fileName}</span>
-                      </button>
-                    )
-                  })}
-                </nav>
-              </div>
-            </aside>
-          ) : null}
-
-          <div className="ide-editor flex min-w-0 flex-1 flex-col">
-            <div className="ide-tabbar flex items-center gap-2 px-3">
-              <div className="flex min-w-0 items-center gap-2 rounded-xl bg-white/10 px-3 py-1.5 text-sm text-[rgba(222,224,239,0.88)]">
-                <VscFile className="text-[14px] text-[rgba(214,180,180,0.92)]" />
-                <span className="truncate font-medium">{activeSection.fileName}</span>
-                <span className="ml-3 h-2 w-2 rounded-full bg-[var(--sp-red)] opacity-80" />
-              </div>
+            <div className="mt-10 flex flex-col gap-3 smPhone:flex-row">
+              <button
+                type="button"
+                onClick={() => scrollToSection('projetos')}
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[linear-gradient(135deg,var(--sp-red),var(--sp-yellow),var(--sp-blue))] px-6 py-3 text-sm font-bold text-[rgba(32,34,49,0.95)] shadow-[0_24px_80px_rgba(0,0,0,0.35)] transition hover:-translate-y-0.5"
+              >
+                Ver projetos
+                <span className="text-[rgba(32,34,49,0.7)]">↓</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollToSection('contato')}
+                className="inline-flex items-center justify-center rounded-xl border border-[rgba(222,224,239,0.14)] bg-white/5 px-6 py-3 text-sm font-semibold text-[rgba(222,224,239,0.88)] transition hover:bg-white/10"
+              >
+                Falar comigo
+              </button>
               <a
                 href="/cv/cv-julio-senior-frontend-react.pdf"
                 download
-                className="ml-auto hidden items-center justify-center rounded-full border border-[rgba(222,224,239,0.14)] bg-white/5 px-4 py-2 text-xs font-bold tracking-[0.22em] text-[rgba(222,224,239,0.9)] transition hover:-translate-y-0.5 hover:border-[rgba(209,145,143,0.45)] hover:bg-white/10 smLaptop:inline-flex"
+                className="inline-flex items-center justify-center rounded-xl border border-[rgba(222,224,239,0.14)] bg-white/5 px-6 py-3 text-sm font-semibold text-[rgba(222,224,239,0.88)] transition hover:bg-white/10"
               >
-                DOWNLOAD CV
+                Download CV
               </a>
             </div>
+          </section>
+        </header>
 
-            <div ref={editorScrollRef} className="ide-scroll min-h-0 flex-1 overflow-y-auto">
-              <div className="mx-auto w-full max-w-[1260px] px-7 pb-6 pt-10 smLaptop:px-14 smLaptop:pb-8 smLaptop:pt-14">
-                <section
-                  className="mb-10 flex flex-wrap items-center justify-center gap-3 text-center text-[11px] font-semibold tracking-[0.18em] text-[rgba(222,224,239,0.7)]"
-                >
-                  <div className="rounded-full border border-[rgba(222,224,239,0.14)] bg-white/5 px-4 py-2">
-                    9+ anos de experiência
-                  </div>
-                  <div className="rounded-full border border-[rgba(222,224,239,0.14)] bg-white/5 px-4 py-2">
-                    Bayer, Cargill, Coopercitrus, Argo, XMobots e órgãos públicos
-                  </div>
-                </section>
+        <section
+          id="impacto"
+          data-section="true"
+          className="mt-20 border-t border-[rgba(222,224,239,0.08)] pt-16"
+        >
+          <p className="font-mono text-[13px] tracking-[0.18em] text-[rgba(141,143,158,0.92)]">
+            // PROVA DE AUTORIDADE
+          </p>
+          <h2 className="section-heading mt-4 text-4xl font-semibold text-[var(--sp-base06)] smPhone:text-3xl">
+            Impacto mensurável<span className="text-gradient">.</span>
+          </h2>
+          <p className="mt-3 max-w-3xl text-base leading-8 text-[rgba(222,224,239,0.72)]">
+            Números e sinais claros de maturidade de produto: consistência, escaneabilidade, UX e
+            velocidade de entrega.
+          </p>
 
-                <section
-                  id="topo"
-                  data-ide-section="true"
-                  className="mb-14 grid gap-6 border-b border-[rgba(222,224,239,0.08)] pb-12 smLaptop:grid-cols-[minmax(0,1.1fr)_360px]"
-                >
+          <div className="mt-10 grid gap-4 smLaptop:grid-cols-3">
+            {authorityCards.map((item) => (
+              <div
+                key={item.title}
+                className="glass-panel rounded-[18px] border border-[rgba(222,224,239,0.12)] px-6 py-6"
+              >
+                <div className="flex items-start justify-between gap-4">
                   <div>
-                    <span className="eyebrow mb-5">Senior Front-end Engineer</span>
-                    <h1 className="section-heading max-w-4xl text-[clamp(2.4rem,4.5vw,4.8rem)] font-semibold leading-[0.94] text-[var(--sp-base06)]">
-                      Construo interfaces para produtos reais, com clareza visual e leitura rápida
-                      mesmo em cenários complexos.
-                    </h1>
-                    <p className="mt-6 max-w-2xl text-base leading-8 text-[rgba(222,224,239,0.78)]">
-                      O objetivo desta janela é o mesmo do site de referência: transformar currículo
-                      e portfólio em uma narrativa mais técnica, direta e agradável de explorar.
-                      Aqui, adaptei essa leitura para o espaço menor da IDE, mantendo hierarquia,
-                      contexto e prova de valor.
+                    <p className="text-xs uppercase tracking-[0.18em] text-[rgba(141,143,158,0.9)]">
+                      {item.metricLabel}
+                    </p>
+                    <p className="mt-2 text-sm font-semibold text-[rgba(222,224,239,0.92)]">
+                      {item.title}
+                    </p>
+                  </div>
+                  <p className="section-heading text-3xl font-semibold text-[var(--sp-blue)]">
+                    {item.metric}
+                  </p>
+                </div>
+                <p className="mt-4 text-sm leading-6 text-[rgba(141,143,158,0.92)]">
+                  {item.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 overflow-hidden rounded-[18px] border border-[rgba(222,224,239,0.12)] bg-[rgba(12,13,20,0.55)]">
+            <div className="flex items-center gap-3 border-b border-[rgba(222,224,239,0.08)] px-5 py-3">
+              <div className="flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+              </div>
+              <p className="font-mono text-[12px] text-[rgba(141,143,158,0.92)]">
+                production_logs.txt
+              </p>
+            </div>
+            <div className="px-5 py-5 font-mono text-[12.5px] leading-6 text-[rgba(222,224,239,0.76)]">
+              <p className="text-[rgba(141,143,158,0.9)]">
+                [2026-06-12 09:12:04] [SUCCESS] UI systems loaded
+              </p>
+              <p>[2026-06-12 09:12:06] [INFO] component library: stable patterns</p>
+              <p>[2026-06-12 09:12:08] [INFO] UX: hierarchy, scan and consistency</p>
+              <p>[2026-06-12 09:12:10] [SUCCESS] ready for product teams</p>
+              <p className="text-[rgba(141,143,158,0.9)]">_</p>
+            </div>
+          </div>
+        </section>
+
+        <div className="mt-14 flex flex-col gap-4 border-t border-[rgba(222,224,239,0.08)] pt-10 smLaptop:flex-row smLaptop:items-center smLaptop:justify-between">
+          <div className="flex flex-wrap items-center gap-3 text-sm text-[rgba(141,143,158,0.92)]">
+            <a
+              href="https://github.com/juliochiuchi"
+              target="_blank"
+              rel="noreferrer"
+              className="glass-panel rounded-xl px-4 py-2 transition hover:bg-white/10 hover:text-[rgba(222,224,239,0.9)]"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/juliochiuchi/"
+              target="_blank"
+              rel="noreferrer"
+              className="glass-panel rounded-xl px-4 py-2 transition hover:bg-white/10 hover:text-[rgba(222,224,239,0.9)]"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://twitter.com/juliochiuchi"
+              target="_blank"
+              rel="noreferrer"
+              className="glass-panel rounded-xl px-4 py-2 transition hover:bg-white/10 hover:text-[rgba(222,224,239,0.9)]"
+            >
+              Twitter
+            </a>
+          </div>
+
+          <nav className="flex flex-wrap items-center gap-2">
+            {navSections.map((sectionId) => {
+              const section = sections.find((item) => item.id === sectionId)
+              const isActive = sectionId === activeSectionId
+
+              return (
+                <button
+                  key={sectionId}
+                  type="button"
+                  onClick={() => scrollToSection(sectionId)}
+                  className={`rounded-xl border px-4 py-2 text-xs font-bold tracking-[0.22em] transition ${isActive ? 'border-[rgba(160,182,232,0.45)] bg-white/10 text-[rgba(222,224,239,0.92)]' : 'border-[rgba(222,224,239,0.14)] bg-white/5 text-[rgba(222,224,239,0.72)] hover:bg-white/10 hover:text-[rgba(222,224,239,0.92)]'
+                    }`}
+                >
+                  {section?.label.toUpperCase()}
+                </button>
+              )
+            })}
+          </nav>
+        </div>
+
+        <section id="projetos" data-section="true" className="mt-20">
+          <p className="font-mono text-[13px] tracking-[0.18em] text-[rgba(141,143,158,0.92)]">
+            // PROJETOS
+          </p>
+          <h2 className="section-heading mt-4 text-4xl font-semibold text-[var(--sp-base06)] smPhone:text-3xl">
+            Sistemas em produção<span className="text-gradient">.</span>
+          </h2>
+          <p className="mt-3 max-w-3xl text-base leading-8 text-[rgba(222,224,239,0.72)]">
+            Cada projeto representa um problema real resolvido com engenharia de software de verdade.
+          </p>
+
+          <div className="mt-10 grid gap-6">
+            {quickProjects.map((project, index) => (
+              <article
+                key={project.id}
+                className="glass-panel overflow-hidden rounded-[18px] border border-[rgba(222,224,239,0.12)]"
+              >
+                <div className="grid gap-8 px-7 py-7 smPhone:px-5 smPhone:py-5 smLaptop:grid-cols-[minmax(0,1fr)_360px]">
+                  <div className="min-w-0">
+                    <p className="font-mono text-[13px] tracking-[0.18em] text-[rgba(141,143,158,0.92)]">
+                      #{String(index + 1).padStart(2, '0')} • {project.category}
+                    </p>
+                    <h3 className="section-heading mt-3 text-[clamp(1.75rem,2.4vw,2.35rem)] font-semibold leading-tight text-[rgba(244,246,251,0.96)]">
+                      {project.title}
+                    </h3>
+                    <p className="mt-4 text-base leading-8 text-[rgba(222,224,239,0.78)]">
+                      {project.summary}
                     </p>
 
-                    <div className="mt-8 flex flex-col gap-3 smPhone:items-stretch mdPhone:flex-row mdPhone:items-center">
-                      <button
-                        type="button"
-                        onClick={() => scrollToSection('projetos')}
-                        className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--sp-red),var(--sp-yellow),var(--sp-blue))] px-7 py-3.5 text-sm font-bold text-[rgba(32,34,49,0.95)] shadow-lg shadow-[rgba(21,23,38,0.45)] transition hover:-translate-y-0.5 hover:shadow-xl"
-                      >
-                        Ver projetos
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => scrollToSection('stack')}
-                        className="inline-flex items-center justify-center rounded-full border border-[rgba(222,224,239,0.14)] bg-white/5 px-7 py-3.5 text-sm font-semibold text-[rgba(222,224,239,0.9)] transition hover:border-[rgba(222,224,239,0.22)] hover:bg-white/10"
-                      >
-                        Ver stack
-                      </button>
-                    </div>
-
-                    <div className="mt-8 grid gap-3 smPhone:grid-cols-2 xl:grid-cols-4">
-                      <div className="rounded-[24px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] px-4 py-4">
-                        <p className="text-xs uppercase tracking-[0.22em] text-[rgba(141,143,158,0.9)]">
-                          Foco
+                    <div className="mt-7 grid gap-6 smLaptop:grid-cols-2">
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.2em] text-[var(--sp-blue)]">
+                          Problema
                         </p>
-                        <p className="mt-2 text-sm font-medium leading-6 text-[rgba(222,224,239,0.92)]">
-                          Interfaces escaláveis com UX clara e comportamento consistente.
+                        <p className="mt-3 text-sm leading-7 text-[rgba(222,224,239,0.78)]">
+                          {project.problem ?? project.detail}
                         </p>
                       </div>
-                      <div className="rounded-[24px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] px-4 py-4">
-                        <p className="text-xs uppercase tracking-[0.22em] text-[rgba(141,143,158,0.9)]">
-                          Contexto
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.2em] text-[var(--sp-yellow)]">
+                          Solução
                         </p>
-                        <p className="mt-2 text-sm font-medium leading-6 text-[rgba(222,224,239,0.92)]">
-                          Enterprise, admin, web e mobile com regras de negócio reais.
-                        </p>
-                      </div>
-                      <div className="rounded-[24px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] px-4 py-4">
-                        <p className="text-xs uppercase tracking-[0.22em] text-[rgba(141,143,158,0.9)]">
-                          Entrega
-                        </p>
-                        <p className="mt-2 text-sm font-medium leading-6 text-[rgba(222,224,239,0.92)]">
-                          Design, implementação, refinamento e evolução contínua do produto.
-                        </p>
-                      </div>
-                      <div className="rounded-[24px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] px-4 py-4">
-                        <p className="text-xs uppercase tracking-[0.22em] text-[rgba(141,143,158,0.9)]">
-                          Ferramental
-                        </p>
-                        <p className="mt-2 text-sm font-medium leading-6 text-[rgba(222,224,239,0.92)]">
-                          React, TypeScript, Tailwind, TanStack, NextJS, entre outros.
+                        <p className="mt-3 text-sm leading-7 text-[rgba(222,224,239,0.78)]">
+                          {project.solution ?? project.detail}
                         </p>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="glass-panel-strong relative overflow-hidden rounded-[30px] p-6">
-                    <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[rgba(160,182,232,0.16)] to-transparent" />
-                    <div className="relative">
-                      <p className="text-xs font-semibold tracking-[0.22em] text-[rgba(141,143,158,0.92)]">
-                        // PERFIL
-                      </p>
-                      <div className="mt-5 flex items-start gap-4">
-                        <img
-                          src="https://github.com/juliochiuchi.png"
-                          alt="Foto de perfil de Julio Chiuchi"
-                          className="h-24 w-24 rounded-[26px] border border-[rgba(222,224,239,0.12)] object-cover shadow-2xl shadow-[rgba(21,23,38,0.45)]"
-                        />
-                        <div className="min-w-0">
-                          <h2 className="section-heading text-3xl font-semibold text-[var(--sp-base06)]">
-                            Julio <span className="text-gradient">Chiuchi</span>
-                          </h2>
-                          <p className="mt-2 text-sm leading-6 text-[rgba(222,224,239,0.74)]">
-                            Front-end sênior com foco em produto, UX, componentização e interfaces
-                            preparadas para uso real.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="mt-6 flex flex-wrap gap-2">
-                        {['ReactJS', 'TypeScript', 'TailwindCSS', 'NextJS', 'Zod', 'TanStack Router', 'GIT', 'TanStack Query'].map(
-                          (item) => (
+                    <div className="mt-7 grid gap-6 smLaptop:grid-cols-2">
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.2em] text-[var(--sp-red)]">
+                          Stack
+                        </p>
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {project.stack.map((item) => (
                             <span
                               key={item}
-                              className="rounded-full border border-[rgba(222,224,239,0.12)] bg-white/5 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[rgba(222,224,239,0.82)]"
+                              className="rounded-md border border-[rgba(160,182,232,0.22)] bg-[rgba(160,182,232,0.08)] px-3 py-1.5 text-sm font-medium text-[rgba(222,224,239,0.82)]"
                             >
                               {item}
                             </span>
-                          )
-                        )}
-                      </div>
-
-                      <div className="mt-6 grid gap-3">
-                        <div className="rounded-[22px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] px-4 py-3">
-                          <p className="text-sm font-semibold text-[rgba(222,224,239,0.94)]">
-                            Dominio
-                          </p>
-                          <p className="mt-1 text-sm leading-6 text-[rgba(141,143,158,0.92)]">
-                            Produtos enterprise, dashboards, fluxos administrativos, institucional e
-                            utilitários.
-                          </p>
-                        </div>
-                        <div className="rounded-[22px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] px-4 py-3">
-                          <p className="text-sm font-semibold text-[rgba(222,224,239,0.94)]">
-                            Habilidade
-                          </p>
-                          <p className="mt-1 text-sm leading-6 text-[rgba(141,143,158,0.92)]">
-                            UX clara, componentização reutilizável, performance percebida e cuidado
-                            com consistência visual.
-                          </p>
-                        </div>
-                        <div className="rounded-[22px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] px-4 py-3">
-                          <p className="text-sm font-semibold text-[rgba(222,224,239,0.94)]">
-                            Contexto
-                          </p>
-                          <p className="mt-1 text-sm leading-6 text-[rgba(141,143,158,0.92)]">
-                            Entregas para empresas de grande porte e projetos autorais com leitura
-                            simples e manutenção sustentável.
-                          </p>
+                          ))}
                         </div>
                       </div>
-
-                      <div className="mt-6 overflow-hidden rounded-[24px] border border-[rgba(222,224,239,0.12)] bg-[rgba(12,13,20,0.45)] px-4 py-4 font-mono text-[12.5px] leading-6 text-[rgba(222,224,239,0.76)]">
-                        <p className="text-[rgba(141,143,158,0.9)]">// session.log</p>
-                        <p className="mt-2">
-                          [08:30] loaded `cv-julio-senior-frontend-react.pdf`
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.2em] text-[var(--sp-blue)]">
+                          Resultados
                         </p>
-                        <p>[08:31] mapped portfolio into IDE reading experience</p>
-                        <p>[08:32] condensed content for smaller viewport and faster scan</p>
-                        <p>[08:33] highlighted projects, stack and professional context</p>
-                        <p>[08:34] status: ready for recruiter, tech lead and product team</p>
+                        <div className="mt-3 grid gap-2">
+                          {project.bullets.map((bullet) => (
+                            <p
+                              key={bullet}
+                              className="flex items-start gap-3 text-sm leading-7 text-[rgba(222,224,239,0.78)]"
+                            >
+                              <span className="mt-1 text-[var(--sp-red)]">→</span>
+                              <span>{bullet}</span>
+                            </p>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </section>
 
-                <section
-                  id="sobre"
-                  data-ide-section="true"
-                  className="mb-14 grid gap-5 border-b border-[rgba(222,224,239,0.08)] pb-12 smLaptop:grid-cols-[minmax(0,1fr)_minmax(320px,0.78fr)]"
-                >
-                  <div className="glass-panel rounded-[30px] p-7 smPhone:p-5 smLaptop:p-8">
-                    <span className="eyebrow mb-5">// SOBRE</span>
-                    <h2 className="section-heading max-w-2xl text-4xl font-semibold text-[var(--sp-base06)] smPhone:text-3xl">
-                      Uma narrativa mais técnica sobre quem eu sou.
-                    </h2>
-                    <p className="mt-6 max-w-2xl text-base leading-8 text-[rgba(222,224,239,0.76)]">
-                      Atuo como front-end sênior com forte base em React e TypeScript,
-                      transitando entre produto, UX e implementação. O repertório mostrado aqui vem
-                      dos seus projetos e do seu CV: interfaces para empresas de alto nível de
-                      exigência, soluções próprias, painéis administrativos e experiências com
-                      preocupação real com usabilidade.
+                  <div className="relative overflow-hidden rounded-[18px] border border-[rgba(222,224,239,0.12)] bg-[rgba(12,13,20,0.45)]">
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${project.badgeClass} opacity-80`}
+                    />
+                    <img
+                      src={project.image}
+                      alt={`Preview do projeto ${project.title}`}
+                      className="relative h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section
+          id="stack"
+          data-section="true"
+          className="mt-20 border-t border-[rgba(222,224,239,0.08)] pt-16"
+        >
+          <p className="font-mono text-[13px] tracking-[0.18em] text-[rgba(141,143,158,0.92)]">
+            // STACK
+          </p>
+          <h2 className="section-heading mt-4 text-4xl font-semibold text-[var(--sp-base06)] smPhone:text-3xl">
+            Domínio técnico<span className="text-gradient">.</span>
+          </h2>
+          <p className="mt-3 max-w-3xl text-base leading-8 text-[rgba(222,224,239,0.72)]">
+            Ferramental principal para transformar repertório em entrega, com foco em consistência e
+            manutenção sustentável.
+          </p>
+
+          <div className="mt-10 grid gap-4 smLaptop:grid-cols-3">
+            {stackGroups.map((group) => (
+              <div
+                key={group.title}
+                className="glass-panel rounded-[18px] border border-[rgba(222,224,239,0.12)] px-6 py-6"
+              >
+                <h3 className="section-heading text-lg font-semibold text-[rgba(222,224,239,0.94)]">
+                  {group.title}
+                </h3>
+                <div className="mt-4 grid gap-2">
+                  {group.items.map((item) => (
+                    <p
+                      key={item}
+                      className="flex items-start gap-3 text-sm text-[rgba(141,143,158,0.92)]"
+                    >
+                      <span className="text-[var(--sp-red)]">→</span>
+                      <span>{item}</span>
                     </p>
-                    <p className="mt-5 max-w-2xl text-base leading-8 text-[rgba(222,224,239,0.76)]">
-                      A adaptação deste layout considera um cenário mais compacto que o site de
-                      referência. Por isso, a hierarquia foi condensada em blocos densos, com títulos
-                      curtos, painéis de leitura rápida e detalhes acessados por seleção de projeto.
-                    </p>
-                  </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
 
-                  <div className="grid gap-4">
-                    {highlights.map((item, index) => (
-                      <div key={item.title} className="glass-panel rounded-[26px] p-5">
-                        <p className="text-xs uppercase tracking-[0.22em] text-[rgba(141,143,158,0.88)]">
-                          {String(index + 1).padStart(2, '0')}
-                        </p>
-                        <h3 className="mt-2 text-lg font-semibold text-[rgba(222,224,239,0.95)]">
-                          {item.title}
-                        </h3>
-                        <p className="mt-2 text-sm leading-6 text-[rgba(141,143,158,0.92)]">
-                          {item.description}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </section>
+          <div className="mt-10 grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-4 smPhone:grid-cols-[repeat(auto-fit,minmax(160px,1fr))]">
+            <CardStack name={capabilities[0]} icon={FaReact} />
+            <CardStack name={capabilities[1]} icon={BiLogoTypescript} />
+            <CardStack name={capabilities[2]} icon={BiLogoTailwindCss} />
+            <CardStack name={capabilities[3]} icon={BiLogoNodejs} />
+            <CardStack name={capabilities[4]} icon={SiVite} />
+            <CardStack name={capabilities[5]} icon={SiNextdotjs} />
+            <CardStack name={capabilities[6]} icon={FaReact} />
+            <CardStack name={capabilities[7]} icon={BiLogoGit} />
+            <CardStack name={capabilities[8]} icon={FaCode} />
+            <CardStack name={capabilities[9]} icon={SiReactquery} />
+            <CardStack name={capabilities[10]} icon={SiReactquery} />
+            <CardStack name={capabilities[11]} icon={FaCode} />
+            <CardStack name={capabilities[12]} icon={SiStyledcomponents} />
+            <CardStack name={capabilities[13]} icon={SiExpo} />
+            <CardStack name={capabilities[14]} icon={IoLogoHtml5} />
+            <CardStack name={capabilities[15]} icon={FaCss3Alt} />
+            <CardStack name={capabilities[16]} icon={RiJavascriptFill} />
+          </div>
+        </section>
 
-                <section
-                  id="projetos"
-                  data-ide-section="true"
-                  className="mb-14 border-b border-[rgba(222,224,239,0.08)] pb-12"
-                >
-                  <div className="mb-8 max-w-3xl">
-                    <span className="eyebrow mb-5">// PROJETOS</span>
-                    <h2 className="section-heading text-4xl font-semibold text-[var(--sp-base06)] smPhone:text-3xl">
-                      Sistemas em produção<span className="text-gradient">.</span>
-                    </h2>
-                    <p className="mt-4 text-base leading-8 text-[rgba(222,224,239,0.76)]">
-                      Cada projeto representa um problema real resolvido com engenharia de software
-                      de verdade.
-                    </p>
-                  </div>
+        <section
+          id="sobre"
+          data-section="true"
+          className="mt-20 border-t border-[rgba(222,224,239,0.08)] pt-16"
+        >
+          <p className="font-mono text-[13px] tracking-[0.18em] text-[rgba(141,143,158,0.92)]">
+            // SOBRE
+          </p>
+          <h2 className="section-heading mt-4 text-4xl font-semibold text-[var(--sp-base06)] smPhone:text-3xl">
+            Julio Chiuchi<span className="text-gradient">.</span>
+          </h2>
 
-                  <div className="grid gap-6">
-                    {quickProjects.map((project, index) => (
-                      <article
-                        key={project.id}
-                        className="glass-panel relative overflow-hidden rounded-[18px] border border-[rgba(222,224,239,0.12)] shadow-[0_18px_60px_rgba(0,0,0,0.22)]"
-                      >
-                        <div className="h-[2px] w-full bg-[linear-gradient(90deg,var(--sp-red),var(--sp-yellow),var(--sp-blue))]" />
-                        <div className="flex items-start justify-between gap-6 px-7 py-7 smPhone:px-5 smPhone:py-5">
-                          <div className="max-w-4xl">
-                            <p className="text-sm font-semibold tracking-[0.2em] text-[var(--sp-red)]">
-                              #{String(index + 1).padStart(2, '0')}
-                            </p>
-                            <h3 className="mt-3 text-[clamp(1.65rem,2.2vw,2.2rem)] font-semibold leading-tight text-[rgba(244,246,251,0.96)]">
-                              {project.title}
-                            </h3>
-                            <p className="mt-1 text-base text-[rgba(141,143,158,0.9)]">
-                              {project.category}
-                            </p>
-                            <p className="mt-6 max-w-5xl text-[1.05rem] leading-8 text-[rgba(222,224,239,0.82)] smPhone:text-base smPhone:leading-7">
-                              {project.summary}
-                            </p>
-                          </div>
+          <div className="mt-10 grid gap-6 smLaptop:grid-cols-[minmax(0,1fr)_minmax(320px,0.72fr)]">
+            <div className="glass-panel rounded-[22px] border border-[rgba(222,224,239,0.12)] px-7 py-7 smPhone:px-5 smPhone:py-5">
+              <p className="text-base leading-8 text-[rgba(222,224,239,0.76)]">
+                Atuo como front-end sênior com forte base em React e TypeScript, transitando entre
+                produto, UX e implementação. O repertório vem de projetos enterprise e produtos
+                autorais com leitura simples e manutenção sustentável.
+              </p>
+              <p className="mt-5 text-base leading-8 text-[rgba(222,224,239,0.76)]">
+                <span className="text-[rgba(222,224,239,0.9)]">
+                  “Não construo interface só para ficar bonita.
+                </span>{' '}
+                Eu projeto para escalar, manter e resolver problemas reais.”
+              </p>
 
-                          <div className="pt-1 text-[var(--sp-blue)]">
-                            <VscDebugAlt className="text-xl" />
-                          </div>
-                        </div>
-
-                        <div className="grid gap-8 border-t border-[rgba(222,224,239,0.08)] px-7 py-7 smPhone:px-5 smPhone:py-5 smLaptop:grid-cols-[minmax(0,1fr)_minmax(280px,0.95fr)]">
-                          <div className="grid gap-7">
-                            <div>
-                              <p className="text-xs uppercase tracking-[0.2em] text-[var(--sp-blue)]">
-                                Problema
-                              </p>
-                              <p className="mt-3 text-base leading-8 text-[rgba(222,224,239,0.84)]">
-                                {project.problem ?? project.detail}
-                              </p>
-                            </div>
-
-                            <div>
-                              <p className="text-xs uppercase tracking-[0.2em] text-[var(--sp-yellow)]">
-                                Solução
-                              </p>
-                              <p className="mt-3 text-base leading-8 text-[rgba(222,224,239,0.84)]">
-                                {project.solution ?? project.detail}
-                              </p>
-                            </div>
-                          </div>
-
-                          <div className="grid gap-7">
-                            <div>
-                              <p className="text-xs uppercase tracking-[0.2em] text-[var(--sp-red)]">
-                                Stack
-                              </p>
-                              <div className="mt-3 flex flex-wrap gap-2">
-                                {project.stack.map((item) => (
-                                  <span
-                                    key={item}
-                                    className="rounded-md border border-[rgba(160,182,232,0.22)] bg-[rgba(160,182,232,0.08)] px-3 py-1.5 text-sm font-medium text-[rgba(222,224,239,0.82)]"
-                                  >
-                                    {item}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-
-                            <div>
-                              <p className="text-xs uppercase tracking-[0.2em] text-[var(--sp-blue)]">
-                                Resultados
-                              </p>
-                              <div className="mt-3 grid gap-2.5">
-                                {project.bullets.map((bullet) => (
-                                  <p
-                                    key={bullet}
-                                    className="flex items-start gap-3 text-base text-[rgba(222,224,239,0.84)]"
-                                  >
-                                    <span className="mt-1 text-[var(--sp-red)]">→</span>
-                                    <span>{bullet}</span>
-                                  </p>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                    ))}
-                  </div>
-                </section>
-                <section id="stack" data-ide-section="true" className="pb-0">
-                  <div className="mb-8 max-w-3xl">
-                    <span className="eyebrow mb-5">// STACK</span>
-                    <h2 className="section-heading text-4xl font-semibold text-[var(--sp-base06)] smPhone:text-3xl">
-                      Ferramental principal para transformar repertório em entrega.
-                    </h2>
-                    <p className="mt-4 text-base leading-8 text-[rgba(222,224,239,0.76)]">
-                      Uma combinação pensada para velocidade de implementação, consistência visual e
-                      manutenção sustentável.
-                    </p>
-                  </div>
-
-                  <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-4 smPhone:grid-cols-[repeat(auto-fit,minmax(160px,1fr))] smLaptop:grid-cols-[repeat(auto-fit,minmax(170px,1fr))]">
-                    <CardStack name={capabilities[0]} icon={FaReact} />
-                    <CardStack name={capabilities[1]} icon={BiLogoTypescript} />
-                    <CardStack name={capabilities[2]} icon={BiLogoTailwindCss} />
-                    <CardStack name={capabilities[3]} icon={BiLogoNodejs} />
-                    <CardStack name={capabilities[4]} icon={SiVite} />
-                    <CardStack name={capabilities[5]} icon={SiNextdotjs} />
-                    <CardStack name={capabilities[6]} icon={FaReact} />
-                    <CardStack name={capabilities[7]} icon={BiLogoGit} />
-                    <CardStack name={capabilities[8]} icon={FaCode} />
-                    <CardStack name={capabilities[9]} icon={SiReactquery} />
-                    <CardStack name={capabilities[10]} icon={SiReactquery} />
-                    <CardStack name={capabilities[11]} icon={FaCode} />
-                    <CardStack name={capabilities[12]} icon={SiStyledcomponents} />
-                    <CardStack name={capabilities[13]} icon={SiExpo} />
-                    <CardStack name={capabilities[14]} icon={IoLogoHtml5} />
-                    <CardStack name={capabilities[15]} icon={FaCss3Alt} />
-                    <CardStack name={capabilities[16]} icon={RiJavascriptFill} />
-                  </div>
-
-                  <Footer />
-                </section>
+              <div className="mt-8 grid gap-3 smPhone:grid-cols-3">
+                <div className="rounded-[18px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] px-4 py-4">
+                  <p className="section-heading text-2xl font-semibold text-[var(--sp-blue)]">
+                    9+
+                  </p>
+                  <p className="mt-1 text-xs tracking-[0.18em] text-[rgba(141,143,158,0.92)]">
+                    anos
+                  </p>
+                </div>
+                <div className="rounded-[18px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] px-4 py-4">
+                  <p className="section-heading text-2xl font-semibold text-[var(--sp-blue)]">
+                    Web
+                  </p>
+                  <p className="mt-1 text-xs tracking-[0.18em] text-[rgba(141,143,158,0.92)]">
+                    + mobile
+                  </p>
+                </div>
+                <div className="rounded-[18px] border border-[rgba(222,224,239,0.12)] bg-white/[0.04] px-4 py-4">
+                  <p className="section-heading text-2xl font-semibold text-[var(--sp-blue)]">
+                    UX
+                  </p>
+                  <p className="mt-1 text-xs tracking-[0.18em] text-[rgba(141,143,158,0.92)]">
+                    clara
+                  </p>
+                </div>
               </div>
             </div>
+
+            <div className="grid gap-4">
+              {highlights.map((item, index) => (
+                <div
+                  key={item.title}
+                  className="glass-panel rounded-[22px] border border-[rgba(222,224,239,0.12)] px-6 py-6"
+                >
+                  <p className="font-mono text-[13px] tracking-[0.18em] text-[rgba(141,143,158,0.9)]">
+                    {String(index + 1).padStart(2, '0')}
+                  </p>
+                  <h3 className="section-heading mt-3 text-xl font-semibold text-[rgba(222,224,239,0.94)]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-[rgba(141,143,158,0.92)]">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        </section>
+
+        <Footer />
       </div>
     </div>
   )

@@ -27,7 +27,7 @@
   html {
     scroll-behavior: smooth;
     height: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
   }
 
   html,
@@ -41,7 +41,8 @@
 
   body {
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     font-family: "Manrope", sans-serif;
     background:
       radial-gradient(circle at 16% 8%, rgba(209, 145, 143, 0.22), transparent 42%),
@@ -53,6 +54,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(141, 143, 158, 0.55) rgba(39, 41, 56, 0.35);
   }
 
   body::before {
@@ -66,6 +69,20 @@
     background-size: 96px 96px;
     mask-image: radial-gradient(circle at center, black 42%, transparent 100%);
     opacity: 0.2;
+  }
+
+  body::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  body::-webkit-scrollbar-track {
+    background: rgba(39, 41, 56, 0.3);
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background: rgba(141, 143, 158, 0.55);
+    border-radius: 9999px;
+    border: 2px solid rgba(39, 41, 56, 0.3);
   }
 
   a {
