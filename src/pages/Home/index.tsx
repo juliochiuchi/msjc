@@ -17,7 +17,7 @@ import { IoLogoHtml5 } from 'react-icons/io'
 import { RiJavascriptFill } from 'react-icons/ri'
 import { SiVite } from 'react-icons/si'
 
-import portfolioPreview from '../../assets/psmsjc-home.png'
+import portfolioPreview from '../../assets/me-portfolio.png'
 import ipimPreview from '../../assets/ipim-home.png'
 import luminaPreview from '../../assets/lumina.png'
 import tiktakPreview from '../../assets/tiktak.png'
@@ -534,7 +534,7 @@ const Home = () => {
             {quickProjects.map((project, index) => (
               <article
                 key={project.id}
-                className="glass-panel overflow-hidden rounded-[18px] border border-[rgba(222,224,239,0.12)]"
+                className="group glass-panel overflow-hidden rounded-[18px] border border-[rgba(222,224,239,0.12)]"
               >
                 <div className="grid gap-8 px-7 py-7 smPhone:px-5 smPhone:py-5 smLaptop:grid-cols-[minmax(0,1fr)_360px]">
                   <div className="min-w-0">
@@ -602,16 +602,55 @@ const Home = () => {
                     </div>
                   </div>
 
-                  <div className="relative overflow-hidden rounded-[18px] border border-[rgba(222,224,239,0.12)] bg-[rgba(12,13,20,0.45)]">
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${project.badgeClass} opacity-80`}
-                    />
-                    <img
-                      src={project.image}
-                      alt={`Preview do projeto ${project.title}`}
-                      className="relative h-full w-full object-cover"
-                      loading="lazy"
-                    />
+                  <div
+                    className={`relative flex min-h-[320px] flex-col overflow-hidden rounded-[22px] border bg-[linear-gradient(180deg,rgba(17,19,29,0.96),rgba(13,14,22,0.9))] p-3 shadow-[0_32px_90px_rgba(0,0,0,0.34)] ${project.ringClass}`}
+                  >
+                    <div className="flex items-center justify-between rounded-[14px] border border-[rgba(222,224,239,0.08)] bg-white/[0.04] px-3 py-2">
+                      <div className="flex items-center gap-2">
+                        <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+                        <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+                        <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+                      </div>
+                      <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[rgba(141,143,158,0.92)]">
+                        preview
+                      </span>
+                    </div>
+
+                    <figure className="relative mt-3 flex-1 overflow-hidden rounded-[18px] border border-[rgba(222,224,239,0.1)] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_46%),linear-gradient(180deg,rgba(24,26,38,0.96),rgba(13,14,22,0.98))]">
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${project.badgeClass} opacity-90 transition duration-500 group-hover:opacity-100`}
+                      />
+                      <div className="absolute inset-[10px] rounded-[14px] border border-white/10 bg-[rgba(7,8,13,0.3)] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]" />
+                      <img
+                        src={project.image}
+                        alt={`Preview do projeto ${project.title}`}
+                        className="relative z-10 h-full w-full object-contain object-top p-4 transition duration-700 group-hover:scale-[1.035]"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[rgba(8,9,14,0.84)] via-[rgba(8,9,14,0.24)] to-transparent" />
+                      <figcaption className="absolute inset-x-0 bottom-0 z-20 flex items-end justify-between gap-3 px-4 pb-4">
+                        <div>
+                          <p className="text-[10px] uppercase tracking-[0.24em] text-[rgba(141,143,158,0.9)]">
+                            Projeto em destaque
+                          </p>
+                          <p className="mt-1 text-sm font-semibold text-[rgba(244,246,251,0.94)]">
+                            {project.title}
+                          </p>
+                        </div>
+                        <span className="rounded-full border border-white/10 bg-black/20 px-3 py-1 font-mono text-[10px] tracking-[0.18em] text-[rgba(222,224,239,0.78)]">
+                          0{index + 1}
+                        </span>
+                      </figcaption>
+                    </figure>
+
+                    <div className="mt-3 flex items-center justify-between gap-3 rounded-[14px] border border-[rgba(222,224,239,0.08)] bg-white/[0.03] px-4 py-3">
+                      <p className="text-xs uppercase tracking-[0.18em] text-[rgba(141,143,158,0.92)]">
+                        Visual do produto
+                      </p>
+                      <p className="text-sm font-medium text-[rgba(222,224,239,0.84)]">
+                        Interface completa sem corte agressivo
+                      </p>
+                    </div>
                   </div>
                 </div>
               </article>
