@@ -2,11 +2,11 @@
 
 Aplicação de portfólio pessoal focada em apresentar perfil profissional, experiência e stack principal com uma UI responsiva e performática.
 
-![Preview da aplicação](./src/assets/psmsjc-home.png)
+![Preview da aplicação](./src/assets/me-portfolio.png)
 
 ## Demo
 
-- Web: https://myspace-julio-chiuchi.vercel.app
+- Web: https://msjc.vercel.app/
 
 ## O que este projeto demonstra
 
